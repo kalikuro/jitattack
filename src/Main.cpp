@@ -4,23 +4,21 @@ int main()
 {
 	util::Platform platform;
 
-#if defined(_DEBUG)
-	std::cout << "Hello World!" << std::endl;
-#endif
-
 	sf::RenderWindow window;
 	// in Windows at least, this must be called before creating the window
 	float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
+
 	// Use the screenScalingFactor
-	window.create(sf::VideoMode(200.0f * screenScalingFactor, 200.0f * screenScalingFactor), "SFML works!");
+	window.create(sf::VideoMode(800 * screenScalingFactor, 600 * screenScalingFactor), "Jit Attack");
 	platform.setIcon(window.getSystemHandle());
 
-	sf::CircleShape shape(window.getSize().x / 2);
-	shape.setFillColor(sf::Color::White);
 
-	sf::Texture shapeTexture;
-	shapeTexture.loadFromFile("content/sfml.png");
-	shape.setTexture(&shapeTexture);
+	// 17 - 21 ... 
+	sf::Texture texture;
+	if (!texture.loadFromFile("content/temp.png")){
+		return EXIT_FAILURE;
+	}
+	sf::Sprite sprite(texture);
 
 	sf::Event event;
 
@@ -33,7 +31,8 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
+		// this line will
+		window.draw(sprite);
 		window.display();
 	}
 
