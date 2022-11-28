@@ -1,26 +1,36 @@
+// main file for game
+
+#include <SFML/Graphics.hpp>
 #include "Platform/Platform.hpp"
 
 int main()
 {
-	util::Platform platform;
+	// util::Platform platform;
 
-	sf::RenderWindow window;
-	// in Windows at least, this must be called before creating the window
-	float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
+	// // in Windows at least, this must be called before creating the window
+	// float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
 
-	// Use the screenScalingFactor
-	window.create(sf::VideoMode(800 * screenScalingFactor, 600 * screenScalingFactor), "Jit Attack");
-	platform.setIcon(window.getSystemHandle());
+	// // Use the screenScalingFactor
+	// window.create(sf::VideoMode(800 * screenScalingFactor, 600 * screenScalingFactor), "Jit Attack");
+	// platform.setIcon(window.getSystemHandle());
 
+	int screenWidth = 800;
+	int screenHeight = 600;
 
-	// 17 - 21 ... 
+	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack");
+	sf::Event event;
 	sf::Texture texture;
-	if (!texture.loadFromFile("content/temp.png")){
+	sf::Sprite playerSprite;
+
+	// 17 - 21 ... Texture loading for sprite
+	if (!texture.loadFromFile("content/playerSprite.png")){
 		return EXIT_FAILURE;
 	}
-	sf::Sprite sprite(texture);
 
-	sf::Event event;
+	texture.setSmooth(true);
+	texture.setRepeated(false);
+	playerSprite.setTexture(texture);
+	playerSprite.setPosition(0, 0);
 
 	while (window.isOpen())
 	{
@@ -31,10 +41,13 @@ int main()
 		}
 
 		window.clear();
-		// this line will
-		window.draw(sprite);
+
+		// this line will draw the sprite
+		window.draw(playerSprite);
+
 		window.display();
 	}
 
 	return 0;
 }
+
