@@ -3,34 +3,26 @@
 #include <SFML/Graphics.hpp>
 #include "Platform/Platform.hpp"
 
-int main()
-{
-	// util::Platform platform;
-
-	// // in Windows at least, this must be called before creating the window
-	// float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
-
-	// // Use the screenScalingFactor
-	// window.create(sf::VideoMode(800 * screenScalingFactor, 600 * screenScalingFactor), "Jit Attack");
-	// platform.setIcon(window.getSystemHandle());
+int main(void){
 
 	int screenWidth = 800;
 	int screenHeight = 600;
 
-	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack");
+	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
-	sf::Texture texture;
+
+	// loading in a sprite
+	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
-	// 17 - 21 ... Texture loading for sprite
-	if (!texture.loadFromFile("content/playerSprite.png")){
+	if(!playerTexture.loadFromFile("content/playerSprite.png")){
+		// error
 		return EXIT_FAILURE;
 	}
-
-	texture.setSmooth(true);
-	texture.setRepeated(false);
-	playerSprite.setTexture(texture);
-	playerSprite.setPosition(0, 0);
+	playerTexture.setSmooth(true);
+	playerTexture.setRepeated(false);
+	playerSprite.setTexture(playerTexture);
+	playerSprite.setPosition(sf::Vector2f(screenWidth / 2, screenHeight / 2));
 
 	while (window.isOpen())
 	{
