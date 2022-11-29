@@ -40,12 +40,15 @@ int main(void){
 		// sprite movement
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
 			playerSprite.move(0, -0.1);
+			playerSprite.setRotation(0);
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
 			playerSprite.move(0, 0.1);
+			playerSprite.setRotation(180);
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
 			playerSprite.rotate(-0.1f);
+
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
 			playerSprite.rotate(0.1f);
