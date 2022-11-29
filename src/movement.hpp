@@ -6,7 +6,7 @@ class Movement{
 public:
 	Movement();
 	~Movement();
-	void moveSprite(sf::Sprite &sprite, sf::RenderWindow &window);
+	void moveSprite(sf::Sprite &sprite);
 	void wrapSprite(sf::Sprite &sprite, sf::RenderWindow &window);
 };
 

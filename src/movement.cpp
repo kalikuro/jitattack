@@ -11,7 +11,7 @@ Movement::~Movement(){
 
 }
 
-void Movement::moveSprite(sf::Sprite &sprite, sf::RenderWindow &window){
+void Movement::moveSprite(sf::Sprite &sprite){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
 		sprite.move(0, -1);
 	}
