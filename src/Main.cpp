@@ -23,7 +23,12 @@ int main(void){
 	playerTexture.setRepeated(false);
 	playerSprite.setTexture(playerTexture);
 	playerSprite.setScale(sf::Vector2f(float(screenWidth) / 5000, float(screenHeight) / 2500));
-	playerSprite.setPosition(sf::Vector2f((screenWidth / 2 ) - ((playerTexture.getSize().x * playerSprite.getScale().x) / 2), (screenHeight / 2) - ((playerTexture.getSize().y * playerSprite.getScale().y) / 2)));
+	playerSprite.setOrigin(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
+	playerSprite.setPosition(screenWidth / 2, screenHeight / 2);
+
+
+	// playerSprite.setPosition(sf::Vector2f((screenWidth / 2 ) - ((playerTexture.getSize().x * playerSprite.getScale().x) / 2), (screenHeight / 2) - ((playerTexture.getSize().y * playerSprite.getScale().y) / 2)));
+
 
 	while (window.isOpen()){
 
@@ -32,70 +37,19 @@ int main(void){
 				window.close();
 		}
 
-		// move player sprite
-		// move player up/north
-		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-		// 	playerSprite.move(0, -.25);
-		// }
-		// // move player down/south
-		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-		// 	playerSprite.move(-.25, 0);
-		// }
-		// // move player left/west
-		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-		// 	playerSprite.move(0, .25);
-		// }
-		// // move player right/east
-		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-		// 	playerSprite.move(.25, 0);
-		// }
-
-		// move & rotate player sprite w/ circle of pi
-		// move player up/north
+		// sprite movement
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-			playerSprite.move(0, -.25);
-			playerSprite.rotate(90);
+			playerSprite.move(0, -0.1);
 		}
-		// move player down/south
-		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-			playerSprite.move(-.25, 0);
-			playerSprite.rotate(180);
-		}
-		// move player left/west
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-			playerSprite.move(0, .25);
-			playerSprite.rotate(270);
+			playerSprite.move(0, 0.1);
 		}
-		// move player right/east
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+			playerSprite.rotate(-0.1f);
+		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-			playerSprite.move(.25, 0);
-			playerSprite.rotate(360);
+			playerSprite.rotate(0.1f);
 		}
-
-		// // move & rotate player sprite w/ circle of 2pi
-		// // move player up/north
-		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-		// 	playerSprite.move(0, -1);
-		// 	playerSprite.rotate(cos(playerSprite.getRotation()) * 5 * 3.14159265358979323846 / 180);
-		// }
-		// // move player down/south
-		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-		// 	playerSprite.move(-1, 0);
-		// 	playerSprite.rotate(cos(playerSprite.getRotation()) * 5 * 3.14159265358979323846 / 180);
-		// }
-		// // move player left/west
-		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-		// 	playerSprite.move(0, 1);
-		// 	playerSprite.rotate(cos(playerSprite.getRotation()) * 5 * 3.14159265358979323846 / 180);
-		// }
-		// // move player right/east
-		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-		// 	playerSprite.move(1, 0);
-		// 	playerSprite.rotate(cos(playerSprite.getRotation()) * 5 * 3.14159265358979323846 / 180);
-		// }
-		// move player down/south
-
-
 
 		window.clear();
 
