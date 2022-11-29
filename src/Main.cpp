@@ -50,27 +50,51 @@ int main(void){
 		// 	playerSprite.move(.25, 0);
 		// }
 
-		// move & rotate player sprite
+		// move & rotate player sprite w/ circle of pi
 		// move player up/north
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
 			playerSprite.move(0, -.25);
-			playerSprite.rotate(5);
+			playerSprite.rotate(90);
 		}
 		// move player down/south
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
 			playerSprite.move(-.25, 0);
-			playerSprite.rotate(15);
+			playerSprite.rotate(180);
 		}
 		// move player left/west
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
 			playerSprite.move(0, .25);
-			playerSprite.rotate(-5);
+			playerSprite.rotate(270);
 		}
 		// move player right/east
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
 			playerSprite.move(.25, 0);
-			playerSprite.rotate(-15);
+			playerSprite.rotate(360);
 		}
+
+		// // move & rotate player sprite w/ circle of 2pi
+		// // move player up/north
+		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+		// 	playerSprite.move(0, -1);
+		// 	playerSprite.rotate(cos(playerSprite.getRotation()) * 5 * 3.14159265358979323846 / 180);
+		// }
+		// // move player down/south
+		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+		// 	playerSprite.move(-1, 0);
+		// 	playerSprite.rotate(cos(playerSprite.getRotation()) * 5 * 3.14159265358979323846 / 180);
+		// }
+		// // move player left/west
+		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+		// 	playerSprite.move(0, 1);
+		// 	playerSprite.rotate(cos(playerSprite.getRotation()) * 5 * 3.14159265358979323846 / 180);
+		// }
+		// // move player right/east
+		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+		// 	playerSprite.move(1, 0);
+		// 	playerSprite.rotate(cos(playerSprite.getRotation()) * 5 * 3.14159265358979323846 / 180);
+		// }
+		// move player down/south
+
 
 
 		window.clear();
