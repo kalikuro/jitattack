@@ -34,20 +34,42 @@ int main(void){
 
 		// move player sprite
 		// move player up/north
+		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+		// 	playerSprite.move(0, -.25);
+		// }
+		// // move player down/south
+		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+		// 	playerSprite.move(-.25, 0);
+		// }
+		// // move player left/west
+		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+		// 	playerSprite.move(0, .25);
+		// }
+		// // move player right/east
+		// if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+		// 	playerSprite.move(.25, 0);
+		// }
+
+		// move & rotate player sprite
+		// move player up/north
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
 			playerSprite.move(0, -.25);
+			playerSprite.rotate(5);
 		}
 		// move player down/south
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
 			playerSprite.move(-.25, 0);
+			playerSprite.rotate(15);
 		}
 		// move player left/west
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
 			playerSprite.move(0, .25);
+			playerSprite.rotate(-5);
 		}
 		// move player right/east
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
 			playerSprite.move(.25, 0);
+			playerSprite.rotate(-15);
 		}
 
 
