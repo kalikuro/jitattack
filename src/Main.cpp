@@ -2,6 +2,19 @@
 
 #include <SFML/Graphics.hpp>
 #include "Platform/Platform.hpp"
+#include <math.h>
+#include <iostream>
+
+
+// float deltaTime(){
+// 	static sf::Clock clock;
+// 	static sf::Time time;
+// 	static sf::Time oldTime;
+// 	time = clock.getElapsedTime();
+// 	float dt = (time.asSeconds() - oldTime.asSeconds());
+// 	oldTime = time;
+// 	return dt;
+// }
 
 int main(void){
 
@@ -37,6 +50,20 @@ int main(void){
 				window.close();
 		}
 
+		// sprite wrapping
+		if(playerSprite.getPosition().x > screenWidth){
+			playerSprite.setPosition(0, playerSprite.getPosition().y);
+		}
+		if(playerSprite.getPosition().x < 0){
+			playerSprite.setPosition(screenWidth, playerSprite.getPosition().y);
+		}
+		if(playerSprite.getPosition().y > screenHeight){
+			playerSprite.setPosition(playerSprite.getPosition().x, 0);
+		}
+		if(playerSprite.getPosition().y < 0){
+			playerSprite.setPosition(playerSprite.getPosition().x, screenHeight);
+		}
+
 		// sprite movement
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
 			playerSprite.move(0, -0.1);
@@ -47,6 +74,7 @@ int main(void){
 			playerSprite.setRotation(180);
 		}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+			playerSprite.move(-0.1, 0);
 			playerSprite.rotate(-0.1f);
 
 		}
