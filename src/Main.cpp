@@ -4,7 +4,6 @@
 #include <math.h>
 
 #include "Platform/Platform.hpp"
-#include "constants.hpp"
 #include "movement.hpp"
 
 // float deltaTime(){
@@ -56,7 +55,7 @@ int main(void){
 
 		// movement
 		Movement movement;
-		movement.moveSprite(playerSprite);
+		movement.move(playerSprite);
 		movement.wrapSprite(playerSprite, window);
 
 

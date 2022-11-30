@@ -182,6 +182,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+
 const float Movement::maxSpeed = 0.1f;
 const float Movement::acl = 0.1f;
 const float Movement::rotationSpeed = 0.1f;
@@ -288,8 +289,8 @@ void Movement::moveSprite(sf::Sprite &sprite){
 	}
 
 	if(mY != 0){
-		velocity.x += mY * acl * cos(sprite.getRotation() * 3.14159265 / 180);
-		velocity.y += mY * acl * sin(sprite.getRotation() * 3.14159265 / 180);
+		velocity.x += mY * acl * cos(sprite.getRotation() * (3.14159265359 / 180));
+		velocity.y += mY * acl * sin(sprite.getRotation() * (3.14159265 / 180));
 	}
 	sprite.move(velocity);
 }
