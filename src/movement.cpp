@@ -181,25 +181,65 @@
 #include "movement.hpp"
 #include <iostream>
 
+const float Movement::maxSpeed = 0.5f;
+const float Movement::acl = 1.0f;
+const float Movement::rotationSpeed = 0.5f;
+
+
 Movement::Movement(){
+	velocity = sf::Vector2f(0, 0);
+	mX = 0;
+	mY = 0;
 }
 
 Movement::~Movement(){}
 
 void Movement::moveSprite(sf::Sprite &sprite){
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-		sprite.move(-1, 0);
+	// if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+	// 	sprite.move(-1, 0);
+	// }
+	// if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+	// 	sprite.move(1, 0);
+	// }
+	// if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+	// 	sprite.move(0, -1);
+	// }
+	// if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+	// 	sprite.move(0, 1);
+	// }
+
+	if(mX == 1){
+		velocity.x += acl;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-		sprite.move(1, 0);
+	if(mX == -1){
+		velocity.x -= acl;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-		sprite.move(0, -1);
+	if(mY == 1){
+		velocity.y += acl;
 	}
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-		sprite.move(0, 1);
+	if(mY == -1){
+		velocity.y -= acl;
 	}
 
+	if(velocity.x > maxSpeed){
+		velocity.x = maxSpeed;
+	}
+	if(velocity.x < -maxSpeed){
+		velocity.x = -maxSpeed;
+	}
+	if(velocity.y > maxSpeed){
+		velocity.y = maxSpeed;
+	}
+	if(velocity.y < -maxSpeed){
+		velocity.y = -maxSpeed;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+		sprite.rotate(-rotationSpeed);
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+		sprite.rotate(rotationSpeed);
+	}
 }
 
 void Movement::wrapSprite(sf::Sprite &sprite, sf::RenderWindow &window){
