@@ -5,7 +5,7 @@
 
 #include "Platform/Platform.hpp"
 #include "constants.hpp"
-
+#include "movement.hpp"
 
 // float deltaTime(){
 // 	static sf::Clock clock;
@@ -56,7 +56,7 @@ int main(void){
 
 		// movement
 		Movement movement;
-		movement.onMove(playerSprite);
+		movement.moveSprite(playerSprite);
 		movement.wrapSprite(playerSprite, window);
 
 
