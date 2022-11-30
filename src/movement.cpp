@@ -244,9 +244,6 @@ void Movement::moveSprite(sf::Sprite &sprite){
 	// 	sprite.rotate(rotationSpeed);
 	// }
 
-	// mX = 0;
-	// mY = 0;
-
 	// if(mX != 0){
 	// 	sprite.rotate(mX * rotationSpeed);
 	// }

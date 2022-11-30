@@ -4,25 +4,37 @@
 #include <iostream>
 #include <math.h>
 #include "movement.hpp"
-
+#include <SFML/Graphics.hpp>
 
 Shoot::Shoot(){
-	shootX = 0;
-	shootY = 0;
-	shootVel = sf::Vector2f(0, 0);
+	if(movement.velocity.x > 0){
+		shootX = movement.velocity.x + 1;
+	}
+
+	if(movement.velocity.x < 0){
+		shootX = movement.velocity.x - 1;
+	}
+
 }
 
 Shoot::~Shoot(){}
 
-void Shoot::onShoot(){
-
+void Shoot::onShoot(sf::Sprite &sprite, sf::RenderWindow &window){
 
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-		// std::cout << "shoot" << std::endl;
-		// std::cout << "shootX: " << shootX << std::endl;
-		// std::cout << "shootY: " << shootY << std::endl;
-		// std::cout << "shootVel.x: " << shootVel.x << std::endl;
-		// std::cout << "shootVel.y: " << shootVel.y << std::endl;
-		// std::cout << " " << std::endl;
+		sprite.setPosition(sprite.getPosition().x + shootX, sprite.getPosition().y + shootY);
+
+		sf::CircleShape circle(10);
+		circle.setFillColor(sf::Color::Red);
+		circle.setPosition(sprite.getPosition().x + shootX, sprite.getPosition().y + shootY);
+
+		window.draw(circle);
+
+		for(int i = 0; i < 100; i++){
+			circle.setPosition(circle.getPosition().x + shootX + i, circle.getPosition().y + shootY + i);
+			window.draw(circle);
+		}
+
+
 	}
 }

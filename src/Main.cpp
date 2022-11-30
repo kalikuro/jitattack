@@ -61,7 +61,7 @@ int main(void){
 
 		// shoot
 		Shoot shoot;
-		shoot.onShoot();
+		shoot.onShoot(playerSprite, window);
 
 		window.display();
 	}
