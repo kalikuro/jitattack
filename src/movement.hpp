@@ -3,9 +3,11 @@
 #include <SFML/Graphics.hpp>
 #include <math.h>
 
+// insintal class for needed instances of movement
 class Movement{
 
 	public:
+
 		static const float maxSpeed;
 		static const float rotationSpeed;
 		static const float acl;
@@ -15,9 +17,9 @@ class Movement{
 		void moveSprite(sf::Sprite &sprite);
 		void wrapSprite(sf::Sprite &sprite, sf::RenderWindow &window);
 
-	private:
+	// private:
 		sf::Vector2f velocity;
-		float mX;
 		float mY;
+		float mX;
 };
 
