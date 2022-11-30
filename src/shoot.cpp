@@ -24,7 +24,7 @@ void Shoot::onShoot(sf::Sprite &sprite, sf::RenderWindow &window){
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
 		sprite.setPosition(sprite.getPosition().x + shootX, sprite.getPosition().y + shootY);
 
-		sf::CircleShape circle(10);
+		sf::CircleShape circle(5);
 		circle.setFillColor(sf::Color::Red);
 		circle.setPosition(sprite.getPosition().x + shootX, sprite.getPosition().y + shootY);
 
