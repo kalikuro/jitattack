@@ -1,10 +1,10 @@
 // main file for game
 
 #include <SFML/Graphics.hpp>
-#include "Platform/Platform.hpp"
 #include <math.h>
-#include <iostream>
-#include "movement.hpp"
+
+#include "Platform/Platform.hpp"
+#include "constants.hpp"
 
 
 // float deltaTime(){
@@ -55,9 +55,11 @@ int main(void){
 		window.draw(playerSprite);
 
 		// movement
-		Movement movement;
-		movement.moveSprite(playerSprite);
-		movement.wrapSprite(playerSprite, window);
+		// Movement movement;
+		// movement.onMove(playerSprite);
+		// movement.wrapSprite(playerSprite, window);
+
+
 
 		window.display();
 	}
