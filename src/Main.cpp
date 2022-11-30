@@ -55,9 +55,9 @@ int main(void){
 		window.draw(playerSprite);
 
 		// movement
-		// Movement movement;
-		// movement.onMove(playerSprite);
-		// movement.wrapSprite(playerSprite, window);
+		Movement movement;
+		movement.onMove(playerSprite);
+		movement.wrapSprite(playerSprite, window);
 
 
 
