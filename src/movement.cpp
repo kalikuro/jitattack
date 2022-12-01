@@ -183,9 +183,9 @@
 #include <SFML/Graphics.hpp>
 
 // initializing static const variables for movement purposes
-const float Movement::maxSpeed = 0.1f;
-const float Movement::acl = 0.1f;
-const float Movement::rotationSpeed = 0.1f;
+const float Movement::maxSpeed = 1.0f;
+const float Movement::acl = 1.0f;
+const float Movement::rotationSpeed = 1.0f;
 
 // movement will include a basic origin initialization
 Movement::Movement(){
@@ -272,16 +272,16 @@ void Movement::moveSprite(sf::Sprite &sprite){
 	// while event is being handled, the movement will be handled
 	// when a certain movement happens the varibal will  be changes on the its coresponding axis position (x or y)
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-		mX = -1;
+		mX = -5;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-		mX = 1;
+		mX = 5;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-		mY = 1;
+		mY = 5;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-		mY = -1;
+		mY = -5;
 	}
 
 	// rotation of the sprite happens on facing of the x axis

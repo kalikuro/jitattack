@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <math.h>
+#include <vector>
 
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
@@ -17,7 +18,8 @@
 // 	return dt;
 // }
 
-int main(void){
+int main(void)
+{
 
 	int screenWidth = 1280;
 	int screenHeight = 720;
@@ -25,11 +27,29 @@ int main(void){
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
 
+	// int randomXPos = 1 + (rand() % 1280);
+	// int randomYPos = 1 + (rand() % 720);
+	// // zombie sprite
+	// sf::Texture zombieTexture;
+	// sf::Sprite zombieSprite;
+
+	// if (!zombieTexture.loadFromFile("content/zombie_sprite.png"))
+	// {
+	// 	return EXIT_FAILURE;
+	// }
+	// zombieTexture.setSmooth(true);
+	// zombieTexture.setRepeated(false);
+	// zombieSprite.setTexture(zombieTexture);
+	// zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
+	// zombieSprite.setOrigin(zombieTexture.getSize().x / 2, zombieTexture.getSize().y / 2);
+	// zombieSprite.setPosition(randomXPos, randomYPos);
+
 	// loading in a sprite
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
-	if(!playerTexture.loadFromFile("content/playerSprite.png")){
+	if (!playerTexture.loadFromFile("content/playerSprite.png"))
+	{
 		// error
 		return EXIT_FAILURE;
 	}
@@ -51,7 +71,12 @@ int main(void){
 				window.close();
 		}
 
+		sf::Texture background;
+		background.loadFromFile("content/gamebg.png");
+
 		window.clear();
+		window.draw(sf::Sprite(background));
+		// window.draw(sf::Sprite(zombieSprite));
 		window.draw(playerSprite);
 
 		// movement
