@@ -4,15 +4,14 @@
 #include <math.h>
 #include <vector>
 
-#include "constants.hpp"
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
 #include "shoot.hpp"
 
 int main(void){
 
-	// int screenWidth = 1280;
-	// int screenHeight = 720;
+	int screenWidth = 1280;
+	int screenHeight = 720;
 
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
