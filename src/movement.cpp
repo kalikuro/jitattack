@@ -183,9 +183,9 @@
 #include <SFML/Graphics.hpp>
 
 // initializing static const variables for movement purposes
-const float Movement::maxSpeed = 0.1f;
-const float Movement::acl = 0.1f;
-const float Movement::rotationSpeed = 0.1f;
+const float Movement::maxSpeed = 1.0f;
+const float Movement::acl = 1.0f;
+const float Movement::rotationSpeed = 1.0f;
 
 // movement will include a basic origin initialization
 Movement::Movement(){

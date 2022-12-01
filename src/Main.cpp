@@ -22,6 +22,8 @@ int main(void){
 	int screenWidth = 1280;
 	int screenHeight = 720;
 
+
+
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
 
@@ -51,7 +53,12 @@ int main(void){
 				window.close();
 		}
 
+		sf::Texture background;
+		background.loadFromFile("content/game_background.png");
+
 		window.clear();
+		window.draw(sf::Sprite(background));
+
 		window.draw(playerSprite);
 
 		// movement
