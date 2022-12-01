@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <math.h>
+#include <vector>
 
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
@@ -75,9 +76,7 @@ int main(void)
 
 		window.clear();
 		window.draw(sf::Sprite(background));
-		for(int i = 0; i < 25; i++){
-			window.draw(zombieSprite);
-		}
+		window.draw(sf::Sprite(zombieSprite));
 		window.draw(playerSprite);
 
 		// movement

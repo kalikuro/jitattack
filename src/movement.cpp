@@ -272,16 +272,16 @@ void Movement::moveSprite(sf::Sprite &sprite){
 	// while event is being handled, the movement will be handled
 	// when a certain movement happens the varibal will  be changes on the its coresponding axis position (x or y)
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-		mX = -1;
+		mX = -5;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-		mX = 1;
+		mX = 5;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-		mY = 1;
+		mY = 5;
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-		mY = -1;
+		mY = -5;
 	}
 
 	// rotation of the sprite happens on facing of the x axis
