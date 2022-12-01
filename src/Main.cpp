@@ -4,25 +4,15 @@
 #include <math.h>
 #include <vector>
 
+#include "constants.hpp"
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
 #include "shoot.hpp"
 
-// float deltaTime(){
-// 	static sf::Clock clock;
-// 	static sf::Time time;
-// 	static sf::Time oldTime;
-// 	time = clock.getElapsedTime();
-// 	float dt = (time.asSeconds() - oldTime.asSeconds());
-// 	oldTime = time;
-// 	return dt;
-// }
+int main(void){
 
-int main(void)
-{
-
-	int screenWidth = 1280;
-	int screenHeight = 720;
+	// int screenWidth = 1280;
+	// int screenHeight = 720;
 
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
