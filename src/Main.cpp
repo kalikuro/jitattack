@@ -32,12 +32,15 @@ int main(void){
 	playerSprite.setOrigin(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
 	playerSprite.setPosition(screenWidth / 2, screenHeight / 2);
 
-	while (window.isOpen()){
+	while(window.isOpen()){
 
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
+
+		// setting the framelimi [setting framerate of game] to 60
+		window.setFramerateLimit(60);
 
 		sf::Texture background;
 		background.loadFromFile("content/gamebg.png");
