@@ -27,22 +27,22 @@ int main(void)
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
 
-	int randomXPos = 1 + (rand() % 1280);
-	int randomYPos = 1 + (rand() % 720);
-	// zombie sprite
-	sf::Texture zombieTexture;
-	sf::Sprite zombieSprite;
+	// int randomXPos = 1 + (rand() % 1280);
+	// int randomYPos = 1 + (rand() % 720);
+	// // zombie sprite
+	// sf::Texture zombieTexture;
+	// sf::Sprite zombieSprite;
 
-	if (!zombieTexture.loadFromFile("content/zombie_sprite.png"))
-	{
-		return EXIT_FAILURE;
-	}
-	zombieTexture.setSmooth(true);
-	zombieTexture.setRepeated(false);
-	zombieSprite.setTexture(zombieTexture);
-	zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
-	zombieSprite.setOrigin(zombieTexture.getSize().x / 2, zombieTexture.getSize().y / 2);
-	zombieSprite.setPosition(randomXPos, randomYPos);
+	// if (!zombieTexture.loadFromFile("content/zombie_sprite.png"))
+	// {
+	// 	return EXIT_FAILURE;
+	// }
+	// zombieTexture.setSmooth(true);
+	// zombieTexture.setRepeated(false);
+	// zombieSprite.setTexture(zombieTexture);
+	// zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
+	// zombieSprite.setOrigin(zombieTexture.getSize().x / 2, zombieTexture.getSize().y / 2);
+	// zombieSprite.setPosition(randomXPos, randomYPos);
 
 	// loading in a sprite
 	sf::Texture playerTexture;
@@ -76,7 +76,7 @@ int main(void)
 
 		window.clear();
 		window.draw(sf::Sprite(background));
-		window.draw(sf::Sprite(zombieSprite));
+		// window.draw(sf::Sprite(zombieSprite));
 		window.draw(playerSprite);
 
 		// movement
