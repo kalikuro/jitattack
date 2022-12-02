@@ -81,25 +81,13 @@ int main(void)
 		shoot.onShoot(playerSprite, window);
 
 		zombie zombie;
+		sf::Vector2f zombiePos = zombie.getSprite().getPosition();
 		for(int i = 0; i < 25; i++){
-			// sf::Vector2f zombiePos = zombie.getSprite().getPosition();
-			// sf::Vector2f playerPos = playerSprite.getPosition();
-			// float distance = sqrt(pow((zombiePos.x - playerPos.x), 2) + pow((zombiePos.y - playerPos.y), 2));
-			// if(distance < 100){
-			// 	zombie.kill();
-			// }
-			// if(zombie.isAlive()){
-			// 	zombie.draw(window);
-			// }
-
-			sf::Vector2f zombiePos = zombie.getSprite().getPosition();
-			for(int i = 0; i < 25; i++){
-				zombiePos = sf::Vector2f(rand() % 1280, rand() % 720);
-				zombie.setLocation(zombiePos.x, zombiePos.y);
-				zombie.draw(window);
-			}
-
+			zombiePos = sf::Vector2f(rand() % 1280, rand() % 720);
+			zombie.setLocation(zombiePos.x, zombiePos.y);
+			zombie.draw(window);
 		}
+
 
 		window.display();
 	}
