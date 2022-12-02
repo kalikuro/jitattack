@@ -48,11 +48,11 @@ int main(void)
 	// playerSprite.setPosition(sf::Vector2f((screenWidth / 2 ) - ((playerTexture.getSize().x * playerSprite.getScale().x) / 2), (screenHeight / 2) - ((playerTexture.getSize().y * playerSprite.getScale().y) / 2)));
 
 	// Spawning zombies
-	zombie zombieArray[25];
-	for(int i = 0; i < 25; i++){
-		zombie zombie(i, 9.8f);
-		zombieArray[i] = zombie;
-	}
+	// zombie zombieArray[25];
+	// for(int i = 0; i < 25; i++){
+	// 	zombie zombie(9.8f);
+	// 	zombieArray[i] = zombie;
+	// }
 
 	while (window.isOpen()){
 
@@ -61,11 +61,11 @@ int main(void)
 				window.close();
 		}
 
-		sf::Texture background;
-		background.loadFromFile("content/gamebg.png");
+		// sf::Texture background;
+		// background.loadFromFile("content/gamebg.png");
 
 		window.clear();
-		window.draw(sf::Sprite(background));
+		// window.draw(sf::Sprite(background));
 		window.draw(playerSprite);
 
 		// movement
