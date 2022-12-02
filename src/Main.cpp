@@ -31,6 +31,7 @@ int main(void){
 	playerSprite.setScale(sf::Vector2f(float(screenWidth) / 5000, float(screenHeight) / 2500));
 	playerSprite.setOrigin(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
 	playerSprite.setPosition(screenWidth / 2, screenHeight / 2);
+	playerSprite.setRotation(270);
 
 	while(window.isOpen()){
 
@@ -56,8 +57,8 @@ int main(void){
 		movement.wrapSprite(playerSprite, window);
 
 		// shoot
-		Shoot shoot;
-		shoot.onShoot(playerSprite, window);
+		// Shoot shoot;
+		// shoot.onShoot(playerSprite, window);
 
 		window.display();
 	}
