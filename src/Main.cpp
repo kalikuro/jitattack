@@ -94,8 +94,9 @@ int main(void)
 
 			sf::Vector2f zombiePos = zombie.getSprite().getPosition();
 			for(int i = 0; i < 25; i++){
-				zombiePos(rand() % 1280, rand() % 720);
-
+				zombiePos = sf::Vector2f(rand() % 1280, rand() % 720);
+				zombie.setLocation(zombiePos.x, zombiePos.y);
+				zombie.draw(window);
 			}
 
 		}
