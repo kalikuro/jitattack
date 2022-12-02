@@ -4,6 +4,7 @@
 #include <math.h>
 #include <vector>
 
+#include "zombie.h"
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
 #include "shoot.hpp"
@@ -27,23 +28,6 @@ int main(void)
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
 
-	// int randomXPos = 1 + (rand() % 1280);
-	// int randomYPos = 1 + (rand() % 720);
-	// // zombie sprite
-	// sf::Texture zombieTexture;
-	// sf::Sprite zombieSprite;
-
-	// if (!zombieTexture.loadFromFile("content/zombie_sprite.png"))
-	// {
-	// 	return EXIT_FAILURE;
-	// }
-	// zombieTexture.setSmooth(true);
-	// zombieTexture.setRepeated(false);
-	// zombieSprite.setTexture(zombieTexture);
-	// zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
-	// zombieSprite.setOrigin(zombieTexture.getSize().x / 2, zombieTexture.getSize().y / 2);
-	// zombieSprite.setPosition(randomXPos, randomYPos);
-
 	// loading in a sprite
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
@@ -63,6 +47,12 @@ int main(void)
 
 	// playerSprite.setPosition(sf::Vector2f((screenWidth / 2 ) - ((playerTexture.getSize().x * playerSprite.getScale().x) / 2), (screenHeight / 2) - ((playerTexture.getSize().y * playerSprite.getScale().y) / 2)));
 
+	// Spawning zombies
+	zombie zombieArray[25];
+	for(int i = 0; i < 25; i++){
+		zombie zombie(i, 9.8f);
+		zombieArray[i] = zombie;
+	}
 
 	while (window.isOpen()){
 
@@ -76,7 +66,6 @@ int main(void)
 
 		window.clear();
 		window.draw(sf::Sprite(background));
-		// window.draw(sf::Sprite(zombieSprite));
 		window.draw(playerSprite);
 
 		// movement

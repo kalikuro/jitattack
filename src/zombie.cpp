@@ -9,7 +9,7 @@ using namespace std;
 int screenWidth = 1280;
 int screenHeight = 720;
 
-zombie::zombie(const int id, float sp){
+zombie::zombie(float sp){
 	alive = true;
 	speed = sp;
 
@@ -24,6 +24,10 @@ sf::Sprite & zombie::getSprite(){
 	return zombieSprite;
 }
 
+void zombie::setLocation(float xpos, float ypos){
+	zombieSprite.setPosition(xpos, ypos);
+}
+
 void zombie::kill(){
 	alive = false;
 }
@@ -32,9 +36,9 @@ bool zombie::isAlive(){
 	return alive;
 }
 
-void zombie::draw(sf::RenderWindow &win){
+void zombie::draw(sf::RenderWindow &window){
 	zombieSprite.setTexture(zombieTexture);
-	win.draw(zombieSprite);
+	window.draw(zombieSprite);
 }
 
 float zombie::getSpeed() const{
