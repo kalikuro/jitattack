@@ -3,6 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <math.h>
 #include <vector>
+#include <time.h>
+#include <random>
+
 
 #include "zombie.h"
 #include "Platform/Platform.hpp"
@@ -61,11 +64,11 @@ int main(void)
 				window.close();
 		}
 
-		// sf::Texture background;
-		// background.loadFromFile("content/gamebg.png");
+		sf::Texture background;
+		background.loadFromFile("content/gamebg.png");
 
 		window.clear();
-		// window.draw(sf::Sprite(background));
+		window.draw(sf::Sprite(background));
 		window.draw(playerSprite);
 
 		// movement
@@ -76,6 +79,26 @@ int main(void)
 		// shoot
 		Shoot shoot;
 		shoot.onShoot(playerSprite, window);
+
+		zombie zombie;
+		for(int i = 0; i < 25; i++){
+			// sf::Vector2f zombiePos = zombie.getSprite().getPosition();
+			// sf::Vector2f playerPos = playerSprite.getPosition();
+			// float distance = sqrt(pow((zombiePos.x - playerPos.x), 2) + pow((zombiePos.y - playerPos.y), 2));
+			// if(distance < 100){
+			// 	zombie.kill();
+			// }
+			// if(zombie.isAlive()){
+			// 	zombie.draw(window);
+			// }
+
+			sf::Vector2f zombiePos = zombie.getSprite().getPosition();
+			for(int i = 0; i < 25; i++){
+				zombiePos(rand() % 1280, rand() % 720);
+
+			}
+
+		}
 
 		window.display();
 	}

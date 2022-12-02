@@ -9,15 +9,17 @@ using namespace std;
 int screenWidth = 1280;
 int screenHeight = 720;
 
-zombie::zombie(float sp){
-	alive = true;
-	speed = sp;
 
-	if(!zombieTexture.loadFromFile("contents/zombie_sprite.png")){
-		throw invalid_argument("Enemy not loaded!");
+zombie::zombie(){
+	alive = true;
+	speed = 9.8f;
+
+	if(!zombieTexture.loadFromFile("content/zombie_sprite.png")){
+		cout << "Error loading zombie sprite" << endl;
 	}
 	zombieSprite.setTexture(zombieTexture);
 	zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
+
 }
 
 sf::Sprite & zombie::getSprite(){

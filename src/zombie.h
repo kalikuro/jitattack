@@ -9,7 +9,7 @@ class zombie
 {
 public:
 	// zombie();c
-	zombie(float);
+	zombie();
 	sf::Sprite& getSprite();
 	void setLocation(float xpos, float ypos);
 	void kill();
