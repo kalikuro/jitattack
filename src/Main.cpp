@@ -11,6 +11,7 @@
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
 #include "shoot.hpp"
+#include "menu.h"
 
 // float deltaTime(){
 // 	static sf::Clock clock;
@@ -34,6 +35,8 @@ int main(void)
 	// loading in a sprite
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
+
+	Menu menu(window.getSize().x, window.getSize().y);
 
 	if (!playerTexture.loadFromFile("content/playerSprite.png"))
 	{
@@ -65,11 +68,15 @@ int main(void)
 		}
 
 		sf::Texture background;
-		background.loadFromFile("content/gamebg.png");
+		//background.loadFromFile("content/gamebg.png");
 
 		window.clear();
+
+		menu.draw(window);
+
 		window.draw(sf::Sprite(background));
 		window.draw(playerSprite);
+
 
 		// movement
 		Movement movement;
@@ -80,13 +87,13 @@ int main(void)
 		Shoot shoot;
 		shoot.onShoot(playerSprite, window);
 
-		zombie zombie;
-		sf::Vector2f zombiePos = zombie.getSprite().getPosition();
-		for(int i = 0; i < 25; i++){
-			zombiePos = sf::Vector2f(rand() % 1280, rand() % 720);
-			zombie.setLocation(zombiePos.x, zombiePos.y);
-			zombie.draw(window);
-		}
+		// zombie zombie;
+		// sf::Vector2f zombiePos = zombie.getSprite().getPosition();
+		// for(int i = 0; i < 25; i++){
+		// 	zombiePos = sf::Vector2f(rand() % 1280, rand() % 720);
+		// 	zombie.setLocation(zombiePos.x, zombiePos.y);
+		// 	zombie.draw(window);
+		// }
 
 
 		window.display();
