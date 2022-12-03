@@ -28,6 +28,10 @@ int main(void)
 	int screenWidth = 1280;
 	int screenHeight = 720;
 
+	int spawnTimerMax = 5.f;
+	int spawnTimer = spawnTimerMax;
+	int maxZombies = 25;
+
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
 
@@ -81,12 +85,24 @@ int main(void)
 		shoot.onShoot(playerSprite, window);
 
 		zombie zombie;
-		sf::Vector2f zombiePos = zombie.getSprite().getPosition();
-		for(int i = 0; i < 25; i++){
-			zombiePos = sf::Vector2f(rand() % 1280, rand() % 720);
-			zombie.setLocation(zombiePos.x, zombiePos.y);
-			zombie.draw(window);
+
+		if(spawnTimer < spawnTimerMax){
+			spawnTimer += 1.f;
 		}
+		else{
+			if(< maxZombies){
+				zombie.zombie.push_back(zombie(*window));
+				spawnTimer = 0.f;
+			}
+		}
+
+		// zombie zombie;
+		// sf::Vector2f zombiePos = zombie.getSprite().getPosition();
+		// for(int i = 0; i < 25; i++){
+		// 	zombiePos = sf::Vector2f(rand() % 1280, rand() % 720);
+		// 	zombie.setLocation(zombiePos.x, zombiePos.y);
+		// 	zombie.draw(window);
+		// }
 
 
 		window.display();

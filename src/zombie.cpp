@@ -38,9 +38,17 @@ bool zombie::isAlive(){
 	return alive;
 }
 
-void zombie::draw(sf::RenderWindow &window){
+zombie::draw(sf::RenderWindow &window){
 	zombieSprite.setTexture(zombieTexture);
 	window.draw(zombieSprite);
+	zombieSprite.setPosition(sf::Vector2f(
+		static_cast<float>(rand() % window.getSize().x - zombieSprite.getGlobalBounds().width),
+		static_cast<float>(rand() % window.getSize().y - zombieSprite.getGlobalBounds().height)
+	));
+}
+
+zombie::zombieSpawn((sf::RenderWindow &window){
+	zombie.draw(window);
 }
 
 float zombie::getSpeed() const{
