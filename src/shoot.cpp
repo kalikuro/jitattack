@@ -5,29 +5,30 @@
 #include "shoot.hpp"
 #include "movement.hpp"
 
-Shoot b;
-std::vector<Shoot> bullets;
-const float circleRadius = 5.f;
-const float speed = 0.1f;
-
 Shoot::Shoot(){
-	shootVel = sf::Vector2f(0.f, 0.f);
+	bullet.setRadius(circleRadius);
+	bullet.setFillColor(sf::Color::Red);
+	bullet.setOrigin(circleRadius, circleRadius);
 }
 
-Shoot::~Shoot(){
-}
+Shoot::~Shoot(){}
 
 void Shoot::onShoot(sf::Sprite &sprite, sf::RenderWindow &window){
+	// get the mouse position
+	sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(window));
+	// get the player position
 	playerPos = sprite.getPosition();
-	aimDirection = shootVel/(sqrt(pow(shootVel.x, 2) + pow(shootVel.y, 2)));
+	// get the direction of the mouse
+	aimDirection = mousePos - playerPos;
+	// normalize the direction
+	aimDirection = aimDirection / sqrt(pow(aimDirection.x, 2) + pow(aimDirection.y, 2));
+	// set the velocity
+	shootVel = aimDirection * speed;
+	// set the bullet position
+	bullet.setPosition(playerPos);
 
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+		bullet.move(shootVel);
 	}
-
-	for(int i = 0; i < bullets.size(); i++){
-
-	}
-
-
 }
+

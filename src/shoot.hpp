@@ -11,8 +11,8 @@ class Shoot{
 		static const float circleRadius;
 		static const float speed;
 		sf::Vector2f shootVel;
-		sf::Vector2f aimDirection;
-		sf::Vector2f playerPos;
+		sf::Vector2f<float> aimDirection;
+		sf::Vector2f<float> playerPos;
 		sf::CircleShape bullet;
 
 		Shoot();
