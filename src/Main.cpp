@@ -84,8 +84,6 @@ int main(void){
 	//Enemy
 	Sprite zombie;
 	zombieSprite.setTexture(zombieTexture);
-	zombie.setScale(sf::Vector2f(float(screenWidth) / 10000, float(screenHeight) / 7500));
-
 
 	std::vector<Sprite> zombies;
 
@@ -145,13 +143,13 @@ int main(void){
 		}
 
 		// Enemies
-		if (spawnCounter < 25)
+		if (spawnCounter < 25){
 			spawnCounter++;
+		}
 
-		if(spawnCounter >= 25){
-			// zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
-			// zombies.push_back(zombies(zombieSprite));
+		if(spawnCounter <= 25){
 			zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
+			zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
 			zombies.push_back(zombieSprite);
 		}
 
