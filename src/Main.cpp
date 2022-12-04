@@ -29,15 +29,12 @@ public:
 	}
 };
 
-// Fuck
-
-
 int main(void){
 	srand(time(NULL));
 
 	int screenWidth = 1280;
 	int screenHeight = 720;
-	int spawnCounter = 50;
+	int spawnCounter = 0;
 
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	window.setFramerateLimit(60);
@@ -47,7 +44,7 @@ int main(void){
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
-	// loading in a audio
+	// loading in audio
 	sf::SoundBuffer buffer;
 
 	if (!playerTexture.loadFromFile("content/playerSprite.png"))
@@ -77,13 +74,20 @@ int main(void){
 	Bullet b1;
 	std::vector<Bullet> bullets;
 
-	//Enemy
-	RectangleShape enemy;
-	enemy.setFillColor(Color::Magenta);
-	enemy.setSize(Vector2f(50.f, 50.f));
-	// int spawnCounter = 20;
+	sf::Texture zombieTexture;
+	sf::Sprite zombieSprite;
 
-	std::vector<RectangleShape> enemies;
+	if(!zombieTexture.loadFromFile("content/zombie_sprite.png")){
+		return EXIT_FAILURE;
+	}
+
+	//Enemy
+	Sprite zombie;
+	zombieSprite.setTexture(zombieTexture);
+	zombie.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
+
+
+	std::vector<Sprite> zombies;
 
 	//Vectors
 	Vector2f playerCenter;
@@ -141,13 +145,13 @@ int main(void){
 		}
 
 		// Enemies
-		if (spawnCounter < 20)
+		if (spawnCounter < 25)
 			spawnCounter++;
 
-		if(spawnCounter >= 20 && enemies.size() < 50)
+		if(spawnCounter >= 25)
 		{
-			enemy.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
-			enemies.push_back(RectangleShape(enemy));
+			zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
+			zombies.push_back(zombies(zombieSprite));
 
 			spawnCounter = 0;
 		}
@@ -177,9 +181,9 @@ int main(void){
 		window.clear();
 		window.draw(sf::Sprite(background));
 
-		for (size_t i = 0; i < enemies.size(); i++)
+		for (size_t i = 0; i < zombies.size(); i++)
 		{
-			window.draw(enemies[i]);
+			window.draw(zombies[i]);
 		}
 
 		window.draw(playerSprite);
