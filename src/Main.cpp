@@ -149,6 +149,7 @@ int main(void){
 			spawnCounter = 0;
 		}
 
+
 		//Shooting
 		if(Mouse::isButtonPressed(Mouse::Left)){
 			b1.shape.setPosition(playerCenter);
