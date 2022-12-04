@@ -8,6 +8,7 @@
 class Shoot{
 
 	public:
+		static const float circleRadius;
 		static const float speed;
 		sf::Vector2f shootVel;
 		sf::Vector2f aimDirection;
