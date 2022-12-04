@@ -29,6 +29,8 @@ public:
 	}
 };
 
+// Fuck
+
 
 int main(void){
 	srand(time(NULL));
