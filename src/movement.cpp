@@ -61,6 +61,7 @@ void Movement::moveSprite(sf::Sprite &sprite){
 	}
 
 
+
 }
 
 // window wrapping in this instance is similair to bounding the playing field for the game

@@ -98,7 +98,6 @@ int main(void){
 		// 	}
 
 		// }
-
 		window.display();
 	}
 
