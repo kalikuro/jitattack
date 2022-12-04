@@ -22,10 +22,10 @@ public:
 	float maxSpeed;
 
 	Bullet(float radius = 5.f)
-		: currVelocity(0.f, 0.f), maxSpeed(15.f)
+		: currVelocity(0.f, 0.f), maxSpeed(12.f)
 	{
 		this->shape.setRadius(radius);
-		this->shape.setFillColor(Color::Red);
+		this->shape.setFillColor(Color::White);
 	}
 };
 
@@ -34,6 +34,7 @@ int main(void){
 
 	int screenWidth = 1280;
 	int screenHeight = 720;
+
 	int spawnCounter = 0;
 
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
@@ -104,8 +105,7 @@ int main(void){
 		sf::Texture background;
 		background.loadFromFile("content/gamebg.png");
 
-		//Update
-		//Vectors
+		// update
 		playerCenter = Vector2f(playerSprite.getPosition());
 		mousePosWindow = Vector2f(Mouse::getPosition(window));
 		aimDirNorm = mousePosWindow - playerCenter;
@@ -116,16 +116,16 @@ int main(void){
 
 		//Player
 		if (Keyboard::isKeyPressed(Keyboard::A)){
-			playerSprite.move(-10.f, 0.f);
+			playerSprite.move(-9.8f, 0.f);
 		}
 		if (Keyboard::isKeyPressed(Keyboard::D)){
-			playerSprite.move(10.f, 0.f);
+			playerSprite.move(9.8f, 0.f);
 		}
 		if (Keyboard::isKeyPressed(Keyboard::W)){
-			playerSprite.move(0.f, -10.f);
+			playerSprite.move(0.f, -9.8f);
 		}
 		if (Keyboard::isKeyPressed(Keyboard::S)){
-			playerSprite.move(0.f, 10.f);
+			playerSprite.move(0.f, 9.8f);
 		}
 
 		// player wrapping
@@ -154,11 +154,24 @@ int main(void){
 		}
 
 
+
 		//Shooting
 		if(Mouse::isButtonPressed(Mouse::Left)){
-			b1.shape.setPosition(playerCenter);
-			b1.currVelocity = aimDirNorm;
+			// shoot from player gun
+			// b1.shape.setPosition(playerCenter);
+			b1.shape.setPosition(playerSprite.getPosition());
+
+			// normalize aim direction
+			aimDir = mousePosWindow - playerCenter;
+			aimDirNorm.x = aimDir.x / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
+			aimDirNorm.y = aimDir.y / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
+
+			// set bullet velocity
+			b1.currVelocity = aimDirNorm * b1.maxSpeed;
+
+			// add bullet to vector
 			bullets.push_back(Bullet(b1));
+
 		}
 
 		//Update Bullets
@@ -166,9 +179,12 @@ int main(void){
 			bullets[i].shape.move(bullets[i].currVelocity);
 
 			//Remove Bullets
-			if (bullets[i].shape.getPosition().x < 0.f || bullets[i].shape.getPosition().x > window.getSize().x
-				|| bullets[i].shape.getPosition().y < 0.f || bullets[i].shape.getPosition().y > window.getSize().y)
-			{
+			if (bullets[i].shape.getPosition().x < 0.f || bullets[i].shape.getPosition().x > window.getSize().x || bullets[i].shape.getPosition().y < 0.f || bullets[i].shape.getPosition().y > window.getSize().y){
+				bullets.erase(bullets.begin() + i);
+				i--;
+			}
+
+			if(bullets.size() > 100){
 				bullets.erase(bullets.begin() + i);
 				i--;
 			}
