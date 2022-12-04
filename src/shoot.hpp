@@ -13,24 +13,10 @@ class Shoot{
 		~Shoot();
 
 		void shootBullet(sf::Sprite &sprite, sf::RenderWindow &window);
-		void updateBullets(sf::RenderWindow &window);
-		void renderBullets(sf::RenderWindow &window);
 
-	private:
+		float radius;
+		float speed;
+		sf::Vector2f velocity;
+		sf::CircleShape circle;
 
-		sf::Texture bulletTexture;
-		sf::Sprite bulletSprite;
-
-		sf::Vector2f playerCenter;
-		sf::Vector2f mousePosWindow;
-		sf::Vector2f aimDir;
-		sf::Vector2f aimDirNorm;
-
-		float angle;
-
-		std::vector<sf::Sprite> bullets;
-
-		sf::Clock clock;
-		sf::Time time;
-
-}
+};
