@@ -7,10 +7,13 @@
 class Movement{
 
 	public:
-
-		static const float maxSpeed;
+		// sf::Vector2f user
+		sf::Vector2f userPos;
+		sf::Vector2f velocity;
 		static const float rotationSpeed;
 		static const float acl;
+		float mY;
+		float mX;
 
 		Movement();
 		~Movement();
@@ -18,8 +21,5 @@ class Movement{
 		void wrapSprite(sf::Sprite &sprite, sf::RenderWindow &window);
 
 	// private:
-		sf::Vector2f velocity;
-		float mY;
-		float mX;
 };
 
