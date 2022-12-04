@@ -29,6 +29,7 @@ public:
 	}
 };
 
+
 int main(void){
 	srand(time(NULL));
 
