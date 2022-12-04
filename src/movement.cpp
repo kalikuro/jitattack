@@ -32,7 +32,6 @@ void Movement::moveSprite(sf::Sprite &sprite){
 	aimDir = mousePosWindow - playerCenter;
 
 	angle = (atan2f(aimDir.y, aimDir.x)) * 180 / 3.14159265;
-	std::cout << angle << std::endl;
 
 	sprite.setRotation(angle + 270);
 
