@@ -18,5 +18,4 @@ class Shoot{
 		float speed;
 		sf::Vector2f velocity;
 		sf::CircleShape circle;
-
 };
