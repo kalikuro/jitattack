@@ -84,7 +84,7 @@ int main(void){
 	//Enemy
 	Sprite zombie;
 	zombieSprite.setTexture(zombieTexture);
-	zombie.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
+	zombie.setScale(sf::Vector2f(float(screenWidth) / 10000, float(screenHeight) / 7500));
 
 
 	std::vector<Sprite> zombies;
