@@ -76,7 +76,18 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "thread": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "bit": "cpp",
+    "bitset": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "cstring": "cpp",
+    "regex": "cpp",
+    "future": "cpp",
+    "numbers": "cpp",
+    "semaphore": "cpp",
+    "stop_token": "cpp",
+    "variant": "cpp"
   },
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.env.windows": {
