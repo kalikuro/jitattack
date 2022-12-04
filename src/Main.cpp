@@ -58,8 +58,6 @@ int main(void)
 		}
 
 		sf::Texture background;
-		background.loadFromFile("content/gamebg.png");
-
 		window.clear();
 		window.draw(sf::Sprite(background));
 		window.draw(playerSprite);
