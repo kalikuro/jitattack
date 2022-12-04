@@ -9,6 +9,7 @@
 
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
+#include "shoot.hpp"
 
 int main(void)
 {
@@ -68,6 +69,11 @@ int main(void)
 		movement.wrapSprite(playerSprite, window);
 
 		// shoot
+		Shoot shoot;
+		shoot.shootBullet(playerSprite, window);
+		shoot.updateBullets(window);
+		shoot.renderBullets(window);
+
 
 		window.display();
 	}
