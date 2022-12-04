@@ -21,20 +21,12 @@ Shoot::Shoot(){
 Shoot::~Shoot(){}
 
 void Shoot::shootBullet(sf::Sprite &sprite, sf::RenderWindow &window){
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		bullets.push_back(Shoot());
-		bullets.back().circle.setPosition(sprite.getPosition());
-		bullets.back().velocity = movement.aimDir;
-
-	}
+	circle.setPosition(sprite.getPosition());
+	bullets.push_back(s);
 
 	for(size_t i = 0; i < bullets.size(); i++){
-		bullets[i].circle.move(bullets[i].velocity);
-	}
-
-	for(size_t i = 0; i < bullets.size(); i++){
+		bullets[i].circle.move(bullets[i].velocity * bullets[i].speed);
 		window.draw(bullets[i].circle);
 	}
-
 
 }
