@@ -59,6 +59,8 @@ int main(void)
 		}
 
 		sf::Texture background;
+		background.loadFromFile("content/gamebg.png");
+
 		window.clear();
 		window.draw(sf::Sprite(background));
 		window.draw(playerSprite);
@@ -72,8 +74,10 @@ int main(void)
 		Shoot shoot;
 		shoot.shootBullet(playerSprite, window);
 
+
 		window.display();
 	}
 
 	return 0;
 }
+
