@@ -1,6 +1,7 @@
 // main file for game
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <math.h>
 #include <vector>
 #include <time.h>
@@ -23,11 +24,25 @@ int main(void)
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
+	// loading in a audio
+	sf::SoundBuffer buffer;
+
 	if (!playerTexture.loadFromFile("content/playerSprite.png"))
 	{
 		// error
 		return EXIT_FAILURE;
 	}
+
+    if (!buffer.loadFromFile("content/sound/mess_test2.ogg"))
+	{
+		// error
+		return EXIT_FAILURE;
+	}
+
+	sf::Sound sound;
+	sound.setBuffer(buffer);
+	sound.play();
+
 	playerTexture.setSmooth(true);
 	playerTexture.setRepeated(false);
 	playerSprite.setTexture(playerTexture);
