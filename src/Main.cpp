@@ -9,7 +9,6 @@
 
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
-#include "shoot.hpp"
 
 int main(void)
 {
@@ -18,6 +17,7 @@ int main(void)
 	int screenHeight = 720;
 
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
+	window.setFramerateLimit(60);
 	sf::Event event;
 
 	// loading in a sprite
@@ -70,8 +70,6 @@ int main(void)
 		movement.wrapSprite(playerSprite, window);
 
 		// shoot
-		Shoot shoot;
-		shoot.onShoot(playerSprite, window);
 
 		window.display();
 	}

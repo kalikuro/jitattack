@@ -1,56 +1,39 @@
 
 #include "movement.hpp"
 #include <iostream>
+#include <math.h>
 #include <SFML/Graphics.hpp>
-
-// initializing static const variables for movement purposes
-const float Movement::maxSpeed = 1.0f;
-const float Movement::acl = 1.0f;
-const float Movement::rotationSpeed = 1.0f;
 
 // movement will include a basic origin initialization
 Movement::Movement(){
-	velocity = sf::Vector2f(0, 0);
-	mX = 0;
-	mY = 0;
+
 }
 
 Movement::~Movement(){}
 
 // moveSprite will be called in the main loop to move the sprite on the given event
 void Movement::moveSprite(sf::Sprite &sprite){
-	// while event is being handled, the movement will be handled
-	// when a certain movement happens the varibal will  be changes on the its coresponding axis position (x or y)
+
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-		mX = -5;
+		sprite.move(-5.f, 0);
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-		mX = 5;
+		sprite.move(5.f, 0);
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-		mY = 5;
+		sprite.move(0, -5.f);
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-		mY = -5;
+		sprite.move(0, 1.f);
 	}
 
-	// rotation of the sprite happens on facing of the x axis
-	if(mX != 0){
-		// simple multiplication of the rotation speed and the movement on the x axis will change the rotation of the sprite
+	playerCenter = sf::Vector2f(sprite.getPosition());
+	mousePosWindow = sf::Vector2f(sf::Mouse::getPosition());
+	aimDir = mousePosWindow - playerCenter;
 
-		// we do mx * rotation speed because the value of mx will be the axis value on the 2d plane
-		sprite.rotate(mX * rotationSpeed);
-	}
+	angle = (atan2f(aimDir.y, aimDir.x)) * 180 / 3.14159265;
 
-	// movement on the y axis will be handled by the velocity (moving forward and backward [yet on this plane its up and down {y axis}]) of the sprite
-	if(mY != 0){
-		// the velocity will be changed by the acl (acceleration) and the movement on the y axis
-		velocity.x += mY * acl * cos(sprite.getRotation() * (3.14159265359 / 180));
-		velocity.y += mY * acl * sin(sprite.getRotation() * (3.14159265 / 180));
-
-		// once the velocity is changed, the sprite will be moved by the velocity
-		sprite.move(velocity);
-	}
+	sprite.setRotation(angle + 270);
 
 
 }
