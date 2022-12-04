@@ -70,8 +70,8 @@ int main(void)
 		movement.wrapSprite(playerSprite, window);
 
 		// shoot
-		// Shoot shoot;
-		// shoot.onShoot(playerSprite, window);
+		Shoot shoot;
+		shoot.onShoot(playerSprite, window);
 
 		window.display();
 	}

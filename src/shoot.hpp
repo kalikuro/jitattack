@@ -8,7 +8,6 @@
 // insintal class for needed instances of shooting
 class Shoot{
 	Movement movement;
-
 	public:
 
 		Shoot();
