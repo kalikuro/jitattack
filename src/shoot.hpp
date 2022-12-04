@@ -8,8 +8,10 @@
 class Shoot{
 
 	public:
-		float speed;
+		static const float speed;
 		sf::Vector2f shootVel;
+		sf::Vector2f aimDirection;
+		sf::Vector2f playerPos;
 		sf::CircleShape bullet;
 
 		Shoot();
