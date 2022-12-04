@@ -110,14 +110,32 @@ int main(void){
 		playerSprite.setRotation(deg);
 
 		//Player
-		if (Keyboard::isKeyPressed(Keyboard::A))
+		if (Keyboard::isKeyPressed(Keyboard::A)){
 			playerSprite.move(-10.f, 0.f);
-		if (Keyboard::isKeyPressed(Keyboard::D))
+		}
+		if (Keyboard::isKeyPressed(Keyboard::D)){
 			playerSprite.move(10.f, 0.f);
-		if (Keyboard::isKeyPressed(Keyboard::W))
+		}
+		if (Keyboard::isKeyPressed(Keyboard::W)){
 			playerSprite.move(0.f, -10.f);
-		if (Keyboard::isKeyPressed(Keyboard::S))
+		}
+		if (Keyboard::isKeyPressed(Keyboard::S)){
 			playerSprite.move(0.f, 10.f);
+		}
+
+		// player wrapping
+		if (playerSprite.getPosition().x < 0){
+			playerSprite.setPosition(screenWidth, playerSprite.getPosition().y);
+		}
+		if (playerSprite.getPosition().x > screenWidth){
+			playerSprite.setPosition(0, playerSprite.getPosition().y);
+		}
+		if (playerSprite.getPosition().y < 0){
+			playerSprite.setPosition(playerSprite.getPosition().x, screenHeight);
+		}
+		if (playerSprite.getPosition().y > screenHeight){
+			playerSprite.setPosition(playerSprite.getPosition().x, 0);
+		}
 
 		// Enemies
 		if (spawnCounter < 20)
