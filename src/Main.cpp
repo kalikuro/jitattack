@@ -22,8 +22,7 @@
 // 	return dt;
 // }
 
-int main(void)
-{
+int main(void){
 
 	int screenWidth = 1280;
 	int screenHeight = 720;
@@ -35,8 +34,7 @@ int main(void)
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
-	if (!playerTexture.loadFromFile("content/playerSprite.png"))
-	{
+	if (!playerTexture.loadFromFile("content/playerSprite.png")){
 		// error
 		return EXIT_FAILURE;
 	}
