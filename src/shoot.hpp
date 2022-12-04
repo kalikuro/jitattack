@@ -1,21 +1,21 @@
-// shoot header file
+// // shoot header file
 
-#pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <math.h>
-#include <vector>
-#include "movement.hpp"
+// #pragma once
+// #include <SFML/Graphics.hpp>
+// #include <SFML/Audio.hpp>
+// #include <math.h>
+// #include <vector>
+// #include "movement.hpp"
 
-class Shoot{
-	public:
-		Shoot();
-		~Shoot();
+// class Shoot{
+// 	public:
+// 		Shoot();
+// 		~Shoot();
 
-		void shootBullet(sf::Sprite &sprite, sf::RenderWindow &window);
+// 		void shootBullet(sf::Sprite &sprite, sf::RenderWindow &window);
 
-		float radius;
-		float speed;
-		sf::Vector2f velocity;
-		sf::CircleShape circle;
-};
+// 		float radius;
+// 		float speed;
+// 		sf::Vector2f velocity;
+// 		sf::CircleShape circle;
+// };
