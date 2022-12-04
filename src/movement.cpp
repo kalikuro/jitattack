@@ -14,6 +14,7 @@ Movement::Movement(){
 	mX = 0;
 	mY = 0;
 
+
 	// user = sf::Vector2f(0, 0);
 }
 
@@ -21,7 +22,7 @@ Movement::~Movement(){}
 
 // // moveSprite will be called in the main loop to move the sprite on the given event
 void Movement::moveSprite(sf::Sprite &sprite){
-	// when a certain movement happens the varibal will  be changes on the its coresponding axis position (x or y)
+	// // when a certain movement happens the varibal will  be changes on the its coresponding axis position (x or y)
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
 		mX = -1;
 	}

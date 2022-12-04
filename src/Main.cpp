@@ -5,22 +5,13 @@
 #include <vector>
 #include <time.h>
 #include <random>
-
+#include <iostream>
+#include<cstdlib>
 
 #include "zombie.h"
 #include "Platform/Platform.hpp"
 #include "movement.hpp"
 #include "shoot.hpp"
-
-// float deltaTime(){
-// 	static sf::Clock clock;
-// 	static sf::Time time;
-// 	static sf::Time oldTime;
-// 	time = clock.getElapsedTime();
-// 	float dt = (time.asSeconds() - oldTime.asSeconds());
-// 	oldTime = time;
-// 	return dt;
-// }
 
 int main(void){
 
@@ -44,16 +35,6 @@ int main(void){
 	playerSprite.setScale(sf::Vector2f(float(screenWidth) / 5000, float(screenHeight) / 2500));
 	playerSprite.setOrigin(playerTexture.getSize().x / 2, playerTexture.getSize().y / 2);
 	playerSprite.setPosition(screenWidth / 2, screenHeight / 2);
-
-
-	// playerSprite.setPosition(sf::Vector2f((screenWidth / 2 ) - ((playerTexture.getSize().x * playerSprite.getScale().x) / 2), (screenHeight / 2) - ((playerTexture.getSize().y * playerSprite.getScale().y) / 2)));
-
-	// Spawning zombies
-	// zombie zombieArray[25];
-	// for(int i = 0; i < 25; i++){
-	// 	zombie zombie(9.8f);
-	// 	zombieArray[i] = zombie;
-	// }
 
 	while (window.isOpen()){
 

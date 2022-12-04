@@ -8,7 +8,7 @@ class Movement{
 
 	public:
 		// sf::Vector2f user
-
+		sf::Vector2f userPos;
 		sf::Vector2f velocity;
 		static const float rotationSpeed;
 		static const float acl;
