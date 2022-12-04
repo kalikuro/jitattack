@@ -3,21 +3,20 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <math.h>
+#include "movement.hpp"
 
 // insintal class for needed instances of shooting
 class Shoot{
+	Movement movement;
 
 	public:
-		static const float circleRadius;
-		static const float speed;
-		sf::Vector2f shootVel;
-		sf::Vector2f<float> aimDirection;
-		sf::Vector2f<float> playerPos;
-		sf::CircleShape bullet;
 
 		Shoot();
 		~Shoot();
 
 		void onShoot(sf::Sprite &sprite, sf::RenderWindow &window);
 
+		float shootX = movement.velocity.x;
+		float shootY = movement.velocity.y;
+		sf::Vector2f shootVel = movement.velocity;
 };

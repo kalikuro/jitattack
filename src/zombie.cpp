@@ -10,7 +10,6 @@
 // int screenHeight = 720;
 
 
-
 // zombie::zombie(){
 // 	alive = true;
 // 	speed = 9.8f;
@@ -21,28 +20,15 @@
 // 	zombieSprite.setTexture(zombieTexture);
 // 	zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
 
-
-// zombie::zombie(const int id, float sp){
-// 	alive = true;
-// 	speed = sp;
-
-// 	if(!zombieTexture.loadFromFile("contents/zombie_sprite.png")){
-// 		throw invalid_argument("Enemy not loaded!");
-// 	}
-// 	zombieSprite.setTexture(zombieTexture);
-// 	zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
-
 // }
 
 // sf::Sprite & zombie::getSprite(){
 // 	return zombieSprite;
 // }
 
-
 // void zombie::setLocation(float xpos, float ypos){
 // 	zombieSprite.setPosition(xpos, ypos);
 // }
-
 
 // void zombie::kill(){
 // 	alive = false;
@@ -63,7 +49,6 @@
 
 // zombie::zombieSpawn((sf::RenderWindow &window){
 // 	zombie.draw(*window);
-
 // }
 
 // float zombie::getSpeed() const{

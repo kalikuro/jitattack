@@ -1,7 +1,6 @@
 // #ifndef Zombie_H
 // #define Zombie_H
 
-
 // #include <SFML/Graphics.hpp>
 // #include <iostream>
 // #include <string>
@@ -23,3 +22,6 @@
 // 	sf::Texture zombieTexture;
 // 	bool alive;
 // 	float speed;
+// };
+
+// #endif
