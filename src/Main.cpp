@@ -148,12 +148,11 @@ int main(void){
 		if (spawnCounter < 25)
 			spawnCounter++;
 
-		if(spawnCounter >= 25)
-		{
+		if(spawnCounter >= 25){
+			// zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
+			// zombies.push_back(zombies(zombieSprite));
 			zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
-			zombies.push_back(zombies(zombieSprite));
-
-			spawnCounter = 0;
+			zombies.push_back(zombieSprite);
 		}
 
 
