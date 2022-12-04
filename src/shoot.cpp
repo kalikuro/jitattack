@@ -22,10 +22,9 @@ Shoot::~Shoot(){}
 
 void Shoot::shootBullet(sf::Sprite &sprite, sf::RenderWindow &window){
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-		s.circle.setPosition(sprite.getPosition());
-		s.velocity = movement.aimDir * speed;
-		bullets.push_back(s);
-
+		bullets.push_back(Shoot());
+		bullets.back().circle.setPosition(sprite.getPosition());
+		bullets.back().velocity = movement.aimDir;
 
 	}
 

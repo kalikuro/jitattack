@@ -75,6 +75,8 @@ int main(void)
 		shoot.shootBullet(playerSprite, window);
 
 
+
+
 		window.display();
 	}
 
