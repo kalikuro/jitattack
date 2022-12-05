@@ -243,6 +243,22 @@ int main(void){
 		}
 
 
+		static int health = 100;
+		// death scenario
+		for(size_t i = 0; i < zombies.size(); i++){
+			if(playerSprite.getGlobalBounds().intersects(zombies[i].getGlobalBounds())){
+				zombies.erase(zombies.begin() + i);
+				playerSprite.setPosition(sf::Vector2f(screenWidth / 2, screenHeight / 2));
+				health -= 10;
+			}
+			// std::cout << health << std::endl;
+		}
+
+		if(health <= 0){
+			alive = false;
+		}
+
+
 		//Draw
 		if(alive == true){
 			window.clear();
@@ -250,6 +266,7 @@ int main(void){
 
 			for (size_t i = 0; i < zombies.size(); i++){
 				window.draw(zombies[i]);
+
 			}
 
 
