@@ -248,7 +248,7 @@ int main(void){
 		for(size_t i = 0; i < zombies.size(); i++){
 			if(playerSprite.getGlobalBounds().intersects(zombies[i].getGlobalBounds())){
 				zombies.erase(zombies.begin() + i);
-				playerSprite.setPosition(sf::Vector2f(screenWidth / 2, screenHeight / 2));
+				playerSprite.setPosition(sf::Vector2f(playerCenter.x - 25, playerCenter.y - 25));
 				health -= 10;
 			}
 			// std::cout << health << std::endl;
