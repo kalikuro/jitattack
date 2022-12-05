@@ -78,6 +78,7 @@ int main(void){
 	sf::Texture zombieTexture;
 	sf::Sprite zombieSprite;
 
+
 	if(!zombieTexture.loadFromFile("content/zombie_sprite.png")){
 		return EXIT_FAILURE;
 	}
@@ -87,6 +88,22 @@ int main(void){
 	zombieSprite.setTexture(zombieTexture);
 
 	std::vector<Sprite> zombies;
+
+	void followPlayer(){
+		for(int i = 0; i < zombie.size(); i++){
+			Sprite currentZombie = zombie.get(i);
+
+			if(i == 0){
+				sf::Vector2f currentPos = currentZombie.getPosition();
+				currentZombie.updateLastPosition(currentPos);
+				currentZombie.move();
+			}
+			else{
+				Sprite prevZombieLocation = zombies.get(i - 1).getLastPosition();
+				currentZombie.moveToPosition(prevZombieLocation);
+			}
+		}
+	}
 
 	//Vectors
 	Vector2f playerCenter;
@@ -99,6 +116,7 @@ int main(void){
 		while (window.pollEvent(event)){
 			if (event.type == Event::Closed){
 				window.close();
+
 			}
 		}
 
