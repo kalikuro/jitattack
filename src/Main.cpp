@@ -48,6 +48,13 @@ int main(void){
 	// loading in audio
 	sf::SoundBuffer buffer;
 
+	sf::Font font;
+
+	if (!font.loadFromFile("content/dogicapixelbold.ttf"))
+	{
+		std::cout << "Error loading font" << std::endl;
+	}
+
 	if (!playerTexture.loadFromFile("content/playerSprite.png"))
 	{
 		// error
@@ -59,6 +66,12 @@ int main(void){
 		// error
 		return EXIT_FAILURE;
 	}
+
+	sf::Text win;
+	win.setFont(font);
+	win.setString("You Win!");
+	win.setCharacterSize(50);
+	win.setPosition(460, 320);
 
 	sf::Sound sound;
 	sound.setBuffer(buffer);
@@ -214,6 +227,7 @@ int main(void){
 
 		}
 
+
 		//Update Bullets
 		for (size_t i = 0; i < bullets.size(); i++){
 			bullets[i].shape.move(bullets[i].currVelocity);
@@ -233,10 +247,10 @@ int main(void){
 				for(size_t k = 0; k < zombies.size(); k++){
 			 		if(bullets[i].shape.getGlobalBounds().intersects(zombies[k].getGlobalBounds())){
 			 			bullets.erase(bullets.begin() + i);
-			 			//i--;
 			 			zombies.erase(zombies.begin() + k);
-			 			//k--;
-			 			break;
+			 			//break;
+						//
+						std::cout << zombies.size() << std::endl;
 			 		}
 			 	}
 			}
@@ -252,6 +266,11 @@ int main(void){
 		}
 
 		window.draw(playerSprite);
+
+		if (zombies.size() == 0){
+			window.draw(win);
+		}
+
 
 		for (size_t i = 0; i < bullets.size(); i++)
 		{
