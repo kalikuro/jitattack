@@ -1,6 +1,7 @@
 // main file for game
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <math.h>
 #include <vector>
 #include <time.h>
@@ -25,9 +26,10 @@
 
 int main(void)
 {
-
 	int screenWidth = 1280;
 	int screenHeight = 720;
+
+	srand(time(0));
 
 	sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Jit Attack", sf::Style::Close | sf::Style::Titlebar);
 	sf::Event event;
@@ -35,6 +37,29 @@ int main(void)
 	// loading in a sprite
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
+
+
+	// include audio
+	sf::SoundBuffer buffer;
+	sf::SoundBuffer buffer1;
+
+	if(!buffer.loadFromFile("content/Never_See_Me_Again_V1.ogg")){
+		std::cout << "Error loading sound" << std::endl;
+	}
+	if(!buffer1.loadFromFile("content/Where_He_Get_It.ogg")){
+		std::cout << "Error loading sound" << std::endl;
+	}
+	sf::Sound sound;
+	int random = rand();
+	// pick randomly between buffer and buffer1
+	if (random % 2 == 0){
+		sound.setBuffer(buffer);
+		sound.play();
+	}
+	else{
+		sound.setBuffer(buffer1);
+		sound.play();
+	}
 
 	Menu menu(window.getSize().x, window.getSize().y);
 
@@ -65,6 +90,10 @@ int main(void)
 		while (window.pollEvent(event)){
 			if (event.type == sf::Event::Closed)
 				window.close();
+			if (event.type == sf::Event::KeyPressed){
+				if (event.key.code == sf::Keyboard::Escape)
+					window.close();
+			}
 		}
 
 		sf::Texture background;
