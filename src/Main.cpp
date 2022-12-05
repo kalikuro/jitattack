@@ -67,11 +67,19 @@ int main(void){
 		return EXIT_FAILURE;
 	}
 
+	// win condition
 	sf::Text win;
 	win.setFont(font);
 	win.setString("You Win!");
 	win.setCharacterSize(50);
 	win.setPosition(460, 320);
+
+	// lose condition
+	sf::Text lose;
+	lose.setFont(font);
+	lose.setString("You Lose!");
+	lose.setCharacterSize(50);
+	lose.setPosition(460, 320);
 
 	sf::Sound sound;
 	sound.setBuffer(buffer);
@@ -123,6 +131,9 @@ int main(void){
 				}
 			}
 		}
+
+		//Bint health = 50; // player health
+		bool alive = true; // player alive
 
 		sf::Texture background;
 		background.loadFromFile("content/gamebg.png");
@@ -208,6 +219,14 @@ int main(void){
 
 		}
 
+
+		// for (size_t i = 0; i < zombies.size(); i++){
+		// 	if (playerSprite.getLocalBounds().intersects(zombies[i].getLocalBounds())){
+		// 		//zombies.erase(zombies.begin() + i);
+		// 		alive = false;
+		// 	}
+		// }
+
 		//Shooting
 		if(Mouse::isButtonPressed(Mouse::Left)){
 			// shoot from player gun
@@ -248,34 +267,43 @@ int main(void){
 			 		if(bullets[i].shape.getGlobalBounds().intersects(zombies[k].getGlobalBounds())){
 			 			bullets.erase(bullets.begin() + i);
 			 			zombies.erase(zombies.begin() + k);
-			 			//break;
-						//
-						std::cout << zombies.size() << std::endl;
 			 		}
 			 	}
 			}
 		}
 
+
 		//Draw
-		window.clear();
-		window.draw(sf::Sprite(background));
+		if(alive == true){
+			window.clear();
+			window.draw(sf::Sprite(background));
 
-		for (size_t i = 0; i < zombies.size(); i++)
-		{
-			window.draw(zombies[i]);
-		}
+			for (size_t i = 0; i < zombies.size(); i++)
+			{
+				window.draw(zombies[i]);
+			}
 
-		window.draw(playerSprite);
+			window.draw(playerSprite);
 
-		if (zombies.size() == 0){
-			window.draw(win);
-		}
+			// if # of zombies is 0, win scenario
+			if (zombies.size() == 0){
+				window.draw(win);
+			}
 
 
-		for (size_t i = 0; i < bullets.size(); i++)
-		{
+			for (size_t i = 0; i < bullets.size(); i++)
+			{
 			window.draw(bullets[i].shape);
+			}
 		}
+
+		if(alive == false){
+			window.clear();
+			window.draw(sf::Sprite(background));
+
+			window.draw(lose);
+		}
+
 
 		window.display();
 	}
