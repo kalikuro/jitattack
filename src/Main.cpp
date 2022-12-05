@@ -117,10 +117,9 @@ int main(void){
 		float deg = atan2(aimDirNorm.y, aimDirNorm.x) * 180 / PI;
 		playerSprite.setRotation(deg);
 
-		zombieCenter = Vector2f(zombieSprite.getPosition());
-		aimZombDirNorm = mousePosWindow - zombieCenter;
-		float zombieDeg = (atan2(aimZombDirNorm.y, aimZombDirNorm.x) * 180) / PI;
-		zombieSprite.rotate(zombieDeg);
+		// zombieCenter = Vector2f(zombieSprite.getPosition());
+		// aimZombDirNorm = mousePosWindow - zombieCenter;
+		// float zombieDeg = (atan2(aimZombDirNorm.y, aimZombDirNorm.x) * 180) / PI;
 
 		//Player
 		if (Keyboard::isKeyPressed(Keyboard::A)){
@@ -174,6 +173,20 @@ int main(void){
 			if(zombies[i].getPosition().y > playerSprite.getPosition().y){
 				zombies[i].move(0.f, -1.f);
 			}
+
+			// zombie rotation
+			// zombieCenter = Vector2f(currentZombie.getPosition());
+			// aimZombDirNorm = mousePosWindow - zombieCenter;
+			// float zombieDeg = (atan2(aimZombDirNorm.y, aimZombDirNorm.x) * 180) / PI;
+			// currentZombie.setRotation(zombieDeg);
+
+			// zombie rotation
+			zombies[i].setRotation(deg + 180);
+			if(zombies[i].getRotation() != deg){
+				zombies[i].setRotation(deg + 180);
+			}
+
+
 		}
 
 		//Shooting
@@ -205,7 +218,7 @@ int main(void){
 				i--;
 			}
 
-			if(bullets.size() > 100){
+			if(bullets.size() > 30){
 				bullets.erase(bullets.begin() + i);
 				i--;
 			}
