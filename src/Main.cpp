@@ -169,6 +169,7 @@ int main(void){
 		// 	}
 		// }
 
+
 		// zombie spawning
 		if(spawnCounter < 25){
 			zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
