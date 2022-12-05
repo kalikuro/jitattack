@@ -122,19 +122,6 @@ int main(void){
 			}
 		}
 
-		// enemy counter
-		sf::Text enemyCounter;
-		enemyCounter.setFont(font);
-		enemyCounter.setString("Enemies: " + std::to_string(zombies.size()));
-		enemyCounter.setCharacterSize(20);
-		enemyCounter.setPosition(10, 10);
-
-		window.draw(enemyCounter);
-
-
-		// bool enter = false;
-
-
 		//Bint health = 50; // player health
 		bool alive = true; // player alive
 
@@ -179,7 +166,7 @@ int main(void){
 		}
 
 		// zombie spawning
-		if(spawnCounter < 100){
+		if(spawnCounter < 250){
 			zombieSprite.setPosition(sf::Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
 			zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 12500, float(screenHeight) / 7500));
 			zombies.push_back(zombieSprite);
@@ -264,6 +251,7 @@ int main(void){
 			for (size_t i = 0; i < zombies.size(); i++){
 				window.draw(zombies[i]);
 			}
+
 
 			window.draw(playerSprite);
 
