@@ -99,9 +99,15 @@ int main(void){
 	while (window.isOpen())
 	{
 		while (window.pollEvent(event)){
+			// when the window is closed, close the game
 			if (event.type == Event::Closed){
 				window.close();
-
+			}
+			// when esc is pressed, close the game
+			if (event.type == Event::KeyPressed){
+				if (event.key.code == Keyboard::Escape){
+					window.close();
+				}
 			}
 		}
 
@@ -221,6 +227,18 @@ int main(void){
 			if(bullets.size() > 30){
 				bullets.erase(bullets.begin() + i);
 				i--;
+			}
+
+			else{
+				for(size_t k = 0; k < zombies.size(); k++){
+			 		if(bullets[i].shape.getGlobalBounds().intersects(zombies[k].getGlobalBounds())){
+			 			bullets.erase(bullets.begin() + i);
+			 			//i--;
+			 			zombies.erase(zombies.begin() + k);
+			 			//k--;
+			 			break;
+			 		}
+			 	}
 			}
 		}
 
