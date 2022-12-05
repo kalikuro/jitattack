@@ -122,8 +122,17 @@ int main(void){
 			}
 		}
 
+		// enemy counter
+		sf::Text enemyCounter;
+		enemyCounter.setFont(font);
+		enemyCounter.setString("Enemies: " + std::to_string(zombies.size()));
+		enemyCounter.setCharacterSize(20);
+		enemyCounter.setPosition(10, 10);
 
-		bool enter = false;
+		window.draw(enemyCounter);
+
+
+		// bool enter = false;
 
 
 		//Bint health = 50; // player health
@@ -132,158 +141,152 @@ int main(void){
 		sf::Texture background;
 		background.loadFromFile("content/gamebg.png");
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)){
-			enter = true;
+		// update
+		playerCenter = sf::Vector2f(playerSprite.getPosition());
+		mousePosWindow = sf::Vector2f(sf::Mouse::getPosition(window));
+		aimDirNorm = mousePosWindow - playerCenter;
+
+		float PI = 3.14159265f;
+		float deg = atan2(aimDirNorm.y, aimDirNorm.x) * 180 / PI;
+		playerSprite.setRotation(deg);
+
+		//Player
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+			playerSprite.move(-9.8f, 0.f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+			playerSprite.move(9.8f, 0.f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+			playerSprite.move(0.f, -9.8f);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+			playerSprite.move(0.f, 9.8f);
 		}
 
-		while (enter){
-			// update
-			playerCenter = sf::Vector2f(playerSprite.getPosition());
-			mousePosWindow = sf::Vector2f(sf::Mouse::getPosition(window));
-			aimDirNorm = mousePosWindow - playerCenter;
+		// player wrapping
+		if (playerSprite.getPosition().x < 0){
+			playerSprite.setPosition(screenWidth, playerSprite.getPosition().y);
+		}
+		if (playerSprite.getPosition().x > screenWidth){
+			playerSprite.setPosition(0, playerSprite.getPosition().y);
+		}
+		if (playerSprite.getPosition().y < 0){
+			playerSprite.setPosition(playerSprite.getPosition().x, screenHeight);
+		}
+		if (playerSprite.getPosition().y > screenHeight){
+			playerSprite.setPosition(playerSprite.getPosition().x, 0);
+		}
 
-			float PI = 3.14159265f;
-			float deg = atan2(aimDirNorm.y, aimDirNorm.x) * 180 / PI;
-			playerSprite.setRotation(deg);
+		// zombie spawning
+		if(spawnCounter < 100){
+			zombieSprite.setPosition(sf::Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
+			zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 12500, float(screenHeight) / 7500));
+			zombies.push_back(zombieSprite);
+			spawnCounter++;
+		}
 
-			//Player
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-				playerSprite.move(-9.8f, 0.f);
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-				playerSprite.move(9.8f, 0.f);
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-				playerSprite.move(0.f, -9.8f);
-			}
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-				playerSprite.move(0.f, 9.8f);
-			}
+		// zombie following player
+		for(size_t i = 0; i < zombies.size(); i++){
+			sf::Sprite currentZombie = zombies[i];
 
-			// player wrapping
-			if (playerSprite.getPosition().x < 0){
-				playerSprite.setPosition(screenWidth, playerSprite.getPosition().y);
+			if(zombies[i].getPosition().x < playerSprite.getPosition().x){
+				zombies[i].move(1.5f, 0.f);
 			}
-			if (playerSprite.getPosition().x > screenWidth){
-				playerSprite.setPosition(0, playerSprite.getPosition().y);
+			if(zombies[i].getPosition().x > playerSprite.getPosition().x){
+				zombies[i].move(-1.5f, 0.f);
 			}
-			if (playerSprite.getPosition().y < 0){
-				playerSprite.setPosition(playerSprite.getPosition().x, screenHeight);
+			if(zombies[i].getPosition().y < playerSprite.getPosition().y){
+				zombies[i].move(0.f, 1.5f);
 			}
-			if (playerSprite.getPosition().y > screenHeight){
-				playerSprite.setPosition(playerSprite.getPosition().x, 0);
-			}
-
-			// zombie spawning
-			if(spawnCounter < 100){
-				zombieSprite.setPosition(sf::Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
-				zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 12500, float(screenHeight) / 7500));
-				zombies.push_back(zombieSprite);
-				spawnCounter++;
+			if(zombies[i].getPosition().y > playerSprite.getPosition().y){
+				zombies[i].move(0.f, -1.5f);
 			}
 
-			// zombie following player
-			for(size_t i = 0; i < zombies.size(); i++){
-				sf::Sprite currentZombie = zombies[i];
+			// zombie rotation to face the player
+			zombieCenter = sf::Vector2f(currentZombie.getPosition());
+			aimZombDirNorm = playerCenter - zombieCenter;
+			float zombieDeg = (atan2(aimZombDirNorm.y, aimZombDirNorm.x) * 180) / PI;
+			currentZombie.setRotation(zombieDeg);
+		}
 
-				if(zombies[i].getPosition().x < playerSprite.getPosition().x){
-					zombies[i].move(1.5f, 0.f);
-				}
-				if(zombies[i].getPosition().x > playerSprite.getPosition().x){
-					zombies[i].move(-1.5f, 0.f);
-				}
-				if(zombies[i].getPosition().y < playerSprite.getPosition().y){
-					zombies[i].move(0.f, 1.5f);
-				}
-				if(zombies[i].getPosition().y > playerSprite.getPosition().y){
-					zombies[i].move(0.f, -1.5f);
-				}
+		//Shooting
+		if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+			// shoot from player gun
+			// b1.shape.setPosition(playerCenter);
+			b1.shape.setPosition(playerSprite.getPosition());
 
-				// zombie rotation to face the player
-				zombieCenter = sf::Vector2f(currentZombie.getPosition());
-				aimZombDirNorm = playerCenter - zombieCenter;
-				float zombieDeg = (atan2(aimZombDirNorm.y, aimZombDirNorm.x) * 180) / PI;
-				currentZombie.setRotation(zombieDeg);
+			// normalize aim direction
+			aimDir = mousePosWindow - playerCenter;
+			aimDirNorm.x = aimDir.x / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
+			aimDirNorm.y = aimDir.y / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
+
+			// set bullet velocity
+			b1.currVelocity = aimDirNorm * b1.maxSpeed;
+
+			// add bullet to vector
+			bullets.push_back(Bullet(b1));
+
+		}
+
+
+		//Update Bullets
+		for (size_t i = 0; i < bullets.size(); i++){
+			bullets[i].shape.move(bullets[i].currVelocity);
+
+			//Remove Bullets
+			if (bullets[i].shape.getPosition().x < 0.f || bullets[i].shape.getPosition().x > window.getSize().x || bullets[i].shape.getPosition().y < 0.f || bullets[i].shape.getPosition().y > window.getSize().y){
+				bullets.erase(bullets.begin() + i);
+				i--;
 			}
 
-			//Shooting
-			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-				// shoot from player gun
-				// b1.shape.setPosition(playerCenter);
-				b1.shape.setPosition(playerSprite.getPosition());
-
-				// normalize aim direction
-				aimDir = mousePosWindow - playerCenter;
-				aimDirNorm.x = aimDir.x / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
-				aimDirNorm.y = aimDir.y / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
-
-				// set bullet velocity
-				b1.currVelocity = aimDirNorm * b1.maxSpeed;
-
-				// add bullet to vector
-				bullets.push_back(Bullet(b1));
-
+			if(bullets.size() > 100){
+				bullets.erase(bullets.begin() + i);
+				i--;
 			}
 
-
-			//Update Bullets
-			for (size_t i = 0; i < bullets.size(); i++){
-				bullets[i].shape.move(bullets[i].currVelocity);
-
-				//Remove Bullets
-				if (bullets[i].shape.getPosition().x < 0.f || bullets[i].shape.getPosition().x > window.getSize().x || bullets[i].shape.getPosition().y < 0.f || bullets[i].shape.getPosition().y > window.getSize().y){
-					bullets.erase(bullets.begin() + i);
-					i--;
-				}
-
-				if(bullets.size() > 100){
-					bullets.erase(bullets.begin() + i);
-					i--;
-				}
-
-				else{
-					for(size_t k = 0; k < zombies.size(); k++){
-						if(bullets[i].shape.getGlobalBounds().intersects(zombies[k].getGlobalBounds())){
-							bullets.erase(bullets.begin() + i);
-							zombies.erase(zombies.begin() + k);
-						}
+			else{
+				for(size_t k = 0; k < zombies.size(); k++){
+					if(bullets[i].shape.getGlobalBounds().intersects(zombies[k].getGlobalBounds())){
+						bullets.erase(bullets.begin() + i);
+						zombies.erase(zombies.begin() + k);
 					}
 				}
 			}
-
-
-			//Draw
-			if(alive == true){
-				window.clear();
-				window.draw(sf::Sprite(background));
-
-				for (size_t i = 0; i < zombies.size(); i++){
-					window.draw(zombies[i]);
-				}
-
-				window.draw(playerSprite);
-
-				// if # of zombies is 0, win scenario
-				if (zombies.size() == 0){
-					window.draw(win);
-				}
-
-
-				for (size_t i = 0; i < bullets.size(); i++){
-					window.draw(bullets[i].shape);
-				}
-			}
-
-			if(alive == false){
-				window.clear();
-				window.draw(sf::Sprite(background));
-
-				window.draw(lose);
-			}
-
-
-			window.display();
 		}
+
+
+		//Draw
+		if(alive == true){
+			window.clear();
+			window.draw(sf::Sprite(background));
+
+			for (size_t i = 0; i < zombies.size(); i++){
+				window.draw(zombies[i]);
+			}
+
+			window.draw(playerSprite);
+
+			// if # of zombies is 0, win scenario
+			if (zombies.size() == 0){
+				window.draw(win);
+			}
+
+
+			for (size_t i = 0; i < bullets.size(); i++){
+				window.draw(bullets[i].shape);
+			}
+		}
+
+		if(alive == false){
+			window.clear();
+			window.draw(sf::Sprite(background));
+
+			window.draw(lose);
+		}
+
+
+		window.display();
 	}
 
 
