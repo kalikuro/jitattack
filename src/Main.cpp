@@ -75,20 +75,18 @@ int main(void){
 	Bullet b1;
 	std::vector<Bullet> bullets;
 
+	// zombies
 	sf::Texture zombieTexture;
 	sf::Sprite zombieSprite;
-
 
 	if(!zombieTexture.loadFromFile("content/zombie_sprite.png")){
 		return EXIT_FAILURE;
 	}
 
-	//Enemy
+	zombieTexture.setSmooth(true);
 	Sprite zombie;
 	zombieSprite.setTexture(zombieTexture);
-
 	std::vector<Sprite> zombies;
-
 
 	//Vectors
 	Vector2f playerCenter;
@@ -146,31 +144,57 @@ int main(void){
 		}
 
 		// Enemies
-		if (spawnCounter < 25){
-			spawnCounter++;
-		}
+		// if (spawnCounter < 25){
+		// 	spawnCounter++;
+		// }
 
-		if(spawnCounter <= 25){
+		// if(spawnCounter <= 25){
+		// 	zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
+		// 	zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
+		// 	zombies.push_back(zombieSprite);
+		// }
+
+		// // zombies following player
+		// for(int i = 0; i < zombie.size(); i++){
+		// 	Sprite currentZombie = zombie.get(i);
+
+		// 	if(i == 0){
+		// 		sf::Vector2f currentPos = currentZombie.getPosition();
+		// 		currentZombie.updateLastPosition(currentPos);
+		// 		currentZombie.move();
+		// 	}
+		// 	else{
+		// 		Sprite prevZombieLocation = zombies.get(i - 1).getLastPosition();
+		// 		currentZombie.moveToPosition(prevZombieLocation);
+		// 	}
+		// }
+
+		// zombie spawning
+		if(spawnCounter < 25){
 			zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
 			zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
 			zombies.push_back(zombieSprite);
+			spawnCounter++;
 		}
 
-		// zombies following player
-		void followPlayer(){
-			for(int i = 0; i < zombie.size(); i++){
-				Sprite currentZombie = zombie.get(i);
+		// zombie following player
+		for(size_t i = 0; i < zombies.size(); i++){
+			Sprite currentZombie = zombies[i];
 
-				if(i == 0){
-					sf::Vector2f currentPos = currentZombie.getPosition();
-					currentZombie.updateLastPosition(currentPos);
-					currentZombie.move();
-				}
-				else{
-					Sprite prevZombieLocation = zombies.get(i - 1).getLastPosition();
-					currentZombie.moveToPosition(prevZombieLocation);
-				}
+			if(zombies[i].getPosition().x < playerSprite.getPosition().x){
+				zombies[i].move(1.f, 0.f);
 			}
+			if(zombies[i].getPosition().x > playerSprite.getPosition().x){
+				zombies[i].move(-1.f, 0.f);
+			}
+			if(zombies[i].getPosition().y < playerSprite.getPosition().y){
+				zombies[i].move(0.f, 1.f);
+			}
+			if(zombies[i].getPosition().y > playerSprite.getPosition().y){
+				zombies[i].move(0.f, -1.f);
+			}
+
+
 		}
 
 
