@@ -90,6 +90,8 @@ int main(void){
 
 	//Vectors
 	Vector2f playerCenter;
+	Vector2f zombieCenter;
+	Vector2f aimZombDirNorm;
 	Vector2f mousePosWindow;
 	Vector2f aimDir;
 	Vector2f aimDirNorm;
@@ -114,6 +116,11 @@ int main(void){
 		float PI = 3.14159265f;
 		float deg = atan2(aimDirNorm.y, aimDirNorm.x) * 180 / PI;
 		playerSprite.setRotation(deg);
+
+		zombieCenter = Vector2f(zombieSprite.getPosition());
+		aimZombDirNorm = mousePosWindow - zombieCenter;
+		float zombieDeg = (atan2(aimZombDirNorm.y, aimZombDirNorm.x) * 180) / PI;
+		zombieSprite.rotate(zombieDeg);
 
 		//Player
 		if (Keyboard::isKeyPressed(Keyboard::A)){
@@ -143,33 +150,6 @@ int main(void){
 			playerSprite.setPosition(playerSprite.getPosition().x, 0);
 		}
 
-		// Enemies
-		// if (spawnCounter < 25){
-		// 	spawnCounter++;
-		// }
-
-		// if(spawnCounter <= 25){
-		// 	zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
-		// 	zombieSprite.setScale(sf::Vector2f(float(screenWidth) / 3500, float(screenHeight) / 1750));
-		// 	zombies.push_back(zombieSprite);
-		// }
-
-		// // zombies following player
-		// for(int i = 0; i < zombie.size(); i++){
-		// 	Sprite currentZombie = zombie.get(i);
-
-		// 	if(i == 0){
-		// 		sf::Vector2f currentPos = currentZombie.getPosition();
-		// 		currentZombie.updateLastPosition(currentPos);
-		// 		currentZombie.move();
-		// 	}
-		// 	else{
-		// 		Sprite prevZombieLocation = zombies.get(i - 1).getLastPosition();
-		// 		currentZombie.moveToPosition(prevZombieLocation);
-		// 	}
-		// }
-
-
 		// zombie spawning
 		if(spawnCounter < 25){
 			zombieSprite.setPosition(Vector2f(rand() % window.getSize().x, rand() % window.getSize().x));
@@ -194,10 +174,7 @@ int main(void){
 			if(zombies[i].getPosition().y > playerSprite.getPosition().y){
 				zombies[i].move(0.f, -1.f);
 			}
-
-
 		}
-
 
 		//Shooting
 		if(Mouse::isButtonPressed(Mouse::Left)){
