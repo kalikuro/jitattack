@@ -9,7 +9,9 @@
 #include <vector>
 #include <time.h>
 #include <random>
+
 #include "Platform/Platform.hpp"
+#include "Movement.hpp"
 
 class Bullet{
 	public:
@@ -129,41 +131,44 @@ int main(void){
 		background.loadFromFile("content/gamebg.png");
 
 		// update
-		playerCenter = sf::Vector2f(playerSprite.getPosition());
-		mousePosWindow = sf::Vector2f(sf::Mouse::getPosition(window));
-		aimDirNorm = mousePosWindow - playerCenter;
+		// playerCenter = sf::Vector2f(playerSprite.getPosition());
+		// mousePosWindow = sf::Vector2f(sf::Mouse::getPosition(window));
+		// aimDirNorm = mousePosWindow - playerCenter;
 
 		float PI = 3.14159265f;
-		float deg = atan2(aimDirNorm.y, aimDirNorm.x) * 180 / PI;
-		playerSprite.setRotation(deg);
+		// float deg = atan2(aimDirNorm.y, aimDirNorm.x) * 180 / PI;
+		// playerSprite.setRotation(deg);
 
-		//Player
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-			playerSprite.move(-9.8f, 0.f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-			playerSprite.move(9.8f, 0.f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-			playerSprite.move(0.f, -9.8f);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-			playerSprite.move(0.f, 9.8f);
-		}
+		// //Player
+		// if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+		// 	playerSprite.move(-9.8f, 0.f);
+		// }
+		// if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+		// 	playerSprite.move(9.8f, 0.f);
+		// }
+		// if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+		// 	playerSprite.move(0.f, -9.8f);
+		// }
+		// if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+		// 	playerSprite.move(0.f, 9.8f);
+		// }
 
-		// player wrapping
-		if (playerSprite.getPosition().x < 0){
-			playerSprite.setPosition(screenWidth, playerSprite.getPosition().y);
-		}
-		if (playerSprite.getPosition().x > screenWidth){
-			playerSprite.setPosition(0, playerSprite.getPosition().y);
-		}
-		if (playerSprite.getPosition().y < 0){
-			playerSprite.setPosition(playerSprite.getPosition().x, screenHeight);
-		}
-		if (playerSprite.getPosition().y > screenHeight){
-			playerSprite.setPosition(playerSprite.getPosition().x, 0);
-		}
+		// // player wrapping
+		// if (playerSprite.getPosition().x < 0){
+		// 	playerSprite.setPosition(screenWidth, playerSprite.getPosition().y);
+		// }
+		// if (playerSprite.getPosition().x > screenWidth){
+		// 	playerSprite.setPosition(0, playerSprite.getPosition().y);
+		// }
+		// if (playerSprite.getPosition().y < 0){
+		// 	playerSprite.setPosition(playerSprite.getPosition().x, screenHeight);
+		// }
+		// if (playerSprite.getPosition().y > screenHeight){
+		// 	playerSprite.setPosition(playerSprite.getPosition().x, 0);
+		// }
+
+		Movement movement;
+		movement.onMove(playerSprite, window);
 
 		// zombie spawning
 		if(spawnCounter < 250){
