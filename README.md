@@ -5,7 +5,7 @@ For more information about SFMl you can visit [here](https://www.sfml-dev.org/)
 
 ---
 
-## Preequisits
+## Prerequisits
 Before install there are some dependencies that must be installed before so. This game is also made to be able to be able to use across Linux, MacOS and Windows so follwing the tutorials provided will very on the OS you are trying to run this on.
 
 Please follow these links to the tutorial to be able to download the follwing dependencies:
@@ -57,4 +57,12 @@ At this point, everything you need is installed
 
 At this point if you have followed all the steps correctly when trying to build and run the program it should work.
 
-#### Other sources
+#### Other Sources
+These sources were either used as documentation for creating the game or inspirtatoin. Big thank you to the following:
+
+- [SFML](https://www.sfml-dev.org/)
+- [SFML Learn](https://www.sfml-dev.org/learn.php)
+- [SFML Tutorial](https://www.sfml-dev.org/tutorials/2.5/)
+- [SFML API Instructions](https://www.sfml-dev.org/documentation/2.5.1/)
+- [VSCode Template](https://github.com/chalet-org/chalet-example-sfml)
+- [SFML GitHub](https://github.com/SFML/SFML)
