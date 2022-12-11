@@ -1,7 +1,7 @@
 # Jit Attack
 
 Jit attack is a short 2D top-down zombie survival game created using C++ and the SFML Library. This game is only one level with having a user player and a random spawning zombies that will be trying to stop you.
-For more information about SFMl you can visit [here](https://www.sfml-dev.org/)
+For more information about SFML you can visit [here](https://www.sfml-dev.org/)
 
 ---
 
@@ -66,3 +66,4 @@ These sources were either used as documentation for creating the game or inspirt
 - [SFML API Instructions](https://www.sfml-dev.org/documentation/2.5.1/)
 - [VSCode Template](https://github.com/chalet-org/chalet-example-sfml)
 - [SFML GitHub](https://github.com/SFML/SFML)
+- [C++ Documentation](https://cplusplus.com/doc/)
