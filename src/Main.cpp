@@ -295,8 +295,5 @@ int main(void){
 	}
 
 
-	// delocate memory
-
-
 	return 0;
 }
